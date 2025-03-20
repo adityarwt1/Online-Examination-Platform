@@ -1,35 +1,57 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
-
-interface Option {
-  id: string;
-  text: string;
-}
 
 interface Question {
   id: number;
   question: string;
-  options: Option[];
+  options: Array<{ id: string; text: string }>;
   correctAnswer: string;
 }
 
-const MCQQuiz: React.FC = () => {
+interface SelectedAnswers {
+  [key: number]: string;
+}
+
+// Custom hook for animation management
+const useAnimation = (isVisible: boolean) => {
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isVisible && elementRef.current) {
+      gsap.from(elementRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+    }
+  }, [isVisible]);
+
+  return elementRef;
+};
+
+const MCQQuiz = () => {
   const router = useRouter();
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, string>>({});
-  const [wrongAnswersCount, setWrongAnswersCount] = useState<number>(0);
-  const [showResults, setShowResults] = useState<boolean>(false);
-  const [timeLeft, setTimeLeft] = useState<number>(300);
-  const [quizSubmitted, setQuizSubmitted] = useState<boolean>(false);
-  const [rollNumber, setRollNumber] = useState<string>("");
-  const [quizStarted, setQuizStarted] = useState<boolean>(false);
+  const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
+  const [wrongAnswersCount, setWrongAnswersCount] = useState(0);
+  const [showResults, setShowResults] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(300);
+  const [quizSubmitted, setQuizSubmitted] = useState(false);
+  const [rollNumber, setRollNumber] = useState("");
+  const [quizStarted, setQuizStarted] = useState(false);
 
   const quizContainerRef = useRef<HTMLDivElement>(null);
   const questionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const timerRef = useRef<HTMLDivElement>(null);
-  const resultsRef = useRef<HTMLDivElement>(null);
+  const resultsContainerRef = useRef<HTMLDivElement>(null);
+
+  // Animation refs using custom hook
+  const startScreenRef = useAnimation(!quizStarted);
+  const quizScreenRef = useAnimation(quizStarted);
+  const resultsScreenRef = useAnimation(showResults);
 
   const questions: Question[] = [
     {
@@ -100,19 +122,65 @@ const MCQQuiz: React.FC = () => {
     },
   ];
 
-  // Initial animation on component mount
-  useEffect(() => {
-    if (quizContainerRef.current) {
-      gsap.from(quizContainerRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: "power3.out",
-      });
+  // Improved animation for questions
+  const animateQuestions = useCallback(() => {
+    if (questionsRef.current.length > 0) {
+      gsap.fromTo(
+        questionsRef.current,
+        { 
+          opacity: 0,
+          y: 20,
+          scale: 0.95
+        },
+        { 
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.15,
+          duration: 0.5,
+          ease: "power2.out",
+          delay: 0.2
+        }
+      );
     }
   }, []);
 
-  // Timer effect
+  // Start quiz and timer
+  const handleStartQuiz = () => {
+    if (rollNumber.trim() === "") {
+      alert("Please enter your roll number");
+      return;
+    }
+
+    setQuizStarted(true);
+    animateQuestions();
+  };
+
+  // Answer selection with improved animation
+  const handleAnswerSelection = (questionId: number, optionId: string) => {
+    if (quizSubmitted) return;
+
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [questionId]: optionId,
+    }));
+
+    // Improved highlight animation
+    gsap.timeline()
+      .to(`#question-${questionId}-option-${optionId}`, {
+        backgroundColor: "#E9D5FF",
+        scale: 1.05,
+        duration: 0.2,
+        ease: "power2.out",
+      })
+      .to(`#question-${questionId}-option-${optionId}`, {
+        scale: 1,
+        duration: 0.1,
+        ease: "power2.out",
+      });
+  };
+
+  // Timer effect with improved animation
   useEffect(() => {
     if (quizStarted && timeLeft > 0 && !quizSubmitted) {
       const timer = setInterval(() => {
@@ -127,6 +195,7 @@ const MCQQuiz: React.FC = () => {
           duration: 0.5,
           repeat: -1,
           yoyo: true,
+          ease: "power2.inOut",
         });
       }
 
@@ -138,42 +207,14 @@ const MCQQuiz: React.FC = () => {
     }
   }, [timeLeft, quizStarted, quizSubmitted]);
 
-  // Start quiz and timer
-  const handleStartQuiz = () => {
-    if (rollNumber.trim() === "") {
-      alert("Please enter your roll number");
-      return;
-    }
-
-    setQuizStarted(true);
-
-    gsap.from(questionsRef.current, {
-      opacity: 0,
-      y: 20,
-      stagger: 0.2,
-      duration: 0.6,
-      ease: "power2.out",
-    });
+  // Format timer display
+  const formatTime = (seconds: number): string => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}`;
   };
 
-  // Answer selection
-  const handleAnswerSelection = (questionId: number, optionId: string) => {
-    if (quizSubmitted) return;
-
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [questionId]: optionId,
-    }));
-
-    gsap.to(`#question-${questionId}-option-${optionId}`, {
-      backgroundColor: "#E9D5FF",
-      scale: 1.05,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  };
-
-  // Submit quiz
+  //// api work goes here
   const handleSubmit = async () => {
     let wrongCount = 0;
 
@@ -182,77 +223,67 @@ const MCQQuiz: React.FC = () => {
         wrongCount++;
       }
     });
-
-    setWrongAnswersCount(wrongCount);
-    setShowResults(true);
-    setQuizSubmitted(true);
-
-    const answeredQuestion = questions.length - wrongCount;
-
+    setWrongAnswersCount(wrongCount)
+    const answeredQuestion =  questions.length - wrongAnswersCount
     const response = await fetch("/api/results", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         rollNumber,
         answeredQuestion,
-        timeTaken: 300 - timeLeft,
-      }),
-    });
-
+      })
+    })
     if (response.ok) {
-      console.log("Quiz submitted successfully");
+      setShowResults(true);
+      setQuizSubmitted(true)
+      setShowResults(true);
     }
-  };
-
-  // Format timer display
-  const formatTime = (seconds: number): string => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}`;
-  };
+  }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12" ref={quizContainerRef}>
+    <div className="min-h-screen bg-gray-100 py-4 sm:py-8 md:py-12">
       {!quizStarted ? (
-        <div className="flex flex-col items-center justify-center min-h-screen">
+        <div ref={startScreenRef} className="flex flex-col items-center justify-center min-h-[80vh] px-4">
           <input
             type="text"
             value={rollNumber}
             onChange={(e) => setRollNumber(e.target.value)}
             placeholder="Enter your roll number"
-            className="px-4 py-3 border border-gray-300 rounded-lg text-lg mb-4 w-80 focus:ring-2 focus:ring-purple-400"
+            className="w-full max-w-md px-4 py-3 border border-gray-300 rounded-lg text-lg mb-4 focus:ring-2 focus:ring-purple-400"
           />
           <button
             onClick={handleStartQuiz}
-            className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all"
+            className="w-full max-w-md px-6 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all"
           >
             Start Quiz
           </button>
         </div>
       ) : (
-        <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+        <div ref={quizScreenRef} className="max-w-3xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-lg">
+          {/* Timer */}
           <div ref={timerRef} className="text-right font-bold text-gray-700 text-lg mb-6">
             Time Left: {formatTime(timeLeft)}
           </div>
 
+          {/* Questions */}
           {questions.map((question, index) => (
-            <div key={question.id} ref={(el) => (questionsRef.current[index] = el)} className="mb-8">
-              <h3 className="font-bold text-xl mb-4">
-                {index + 1}. {question.question}
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
+            <div
+              key={question.id}
+              ref={(el) => (questionsRef.current[index] = el)}
+              className="mb-6 sm:mb-8"
+            >
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4">{index + 1}. {question.question}</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {question.options.map((option) => (
                   <div
                     key={option.id}
                     id={`question-${question.id}-option-${option.id}`}
                     onClick={() => handleAnswerSelection(question.id, option.id)}
-                    className={`p-4 border rounded-xl cursor-pointer transition-all duration-300 ${
-                      selectedAnswers[question.id] === option.id
-                        ? "bg-purple-200 border-purple-400 scale-105"
-                        : "hover:bg-gray-100"
-                    }`}
+                    className={`p-3 sm:p-4 border rounded-xl cursor-pointer transition-all duration-300
+                      ${selectedAnswers[question.id] === option.id ? 'bg-purple-200 border-purple-400 scale-105' : 'hover:bg-gray-100'}
+                    `}
                   >
                     {option.text}
                   </div>
@@ -261,9 +292,41 @@ const MCQQuiz: React.FC = () => {
             </div>
           ))}
 
+          {/* Submit Button */}
           {!quizSubmitted && (
-            <button onClick={handleSubmit}>Submit Quiz</button>
+            <div className="text-center mt-6">
+              <button
+                onClick={handleSubmit}
+                className="w-full sm:w-auto px-6 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all"
+              >
+                Submit Quiz
+              </button>
+            </div>
           )}
+        </div>
+      )}
+
+      {showResults && (
+        <div ref={resultsScreenRef} className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full">
+            <div className="bg-green-300 text-black shadow-md p-4 rounded-lg w-full text-center">
+              Exam Submitted Successfully
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button 
+                className="bg-red-300 font-semibold rounded-md shadow-md duration-300 w-full sm:w-auto px-6 py-3 hover:scale-105" 
+                onClick={() => router.push("/results")}
+              >
+                Check Result
+              </button>
+              <button 
+                className="bg-purple-300 font-semibold rounded-md shadow-md duration-300 w-full sm:w-auto px-6 py-3 hover:scale-105" 
+                onClick={() => router.push("/")}
+              >
+                Go to Home
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
