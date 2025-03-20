@@ -57,19 +57,22 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/dashboard" className="text-gray-700 hover:text-purple-600 transition-colors duration-200">
+            <Link href="/dashboard" className="text-gray-700 font-semibold hover:text-purple-600 transition-colors duration-200">
               Dashboard
             </Link>
-            <Link href="/exams" className="text-gray-700 hover:text-purple-600 transition-colors duration-200">
+            <Link href="/classwise" className="text-gray-700  font-semibold hover:text-purple-600 transition-colors duration-200">
+              Classwise
+            </Link>
+            <Link href="/exams" className="text-gray-700 font-semibold hover:text-purple-600 transition-colors duration-200">
               Exams
             </Link>
-            <Link href="/results" className="text-gray-700 hover:text-purple-600 transition-colors duration-200">
+            <Link href="/results" className="text-gray-700 font-semibold hover:text-purple-600 transition-colors duration-200">
               Results
             </Link>
-            <Link href="/resources" className="text-gray-700 hover:text-purple-600 transition-colors duration-200">
+            <Link href="/resources" className="text-gray-700 font-semibold hover:text-purple-600 transition-colors duration-200">
               Resources
             </Link>
-            <Link href="/support" className="text-gray-700 hover:text-purple-600 transition-colors duration-200">
+            <Link href="/support" className="text-gray-700 font-semibold hover:text-purple-600 transition-colors duration-200">
               Support
             </Link>
           </div>
