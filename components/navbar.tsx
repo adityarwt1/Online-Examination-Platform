@@ -59,7 +59,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center" onClick={handleLinkClick}>
-              <span className="text-2xl font-bold text-purple-800">ExamPro</span>
+              <span className="text-2xl font-bold text-purple-800">Exam-Simulator</span>
             </Link>
           </div>
 

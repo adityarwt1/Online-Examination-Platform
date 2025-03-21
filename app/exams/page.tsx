@@ -16,7 +16,7 @@ const page = () => {
                         className="w-full h-full object-cover opacity-70"
                     />
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-purple-600/30 to-purple-600/10"></div>
-                    
+
                 </div>
 
                 <div className="p-4">
@@ -32,12 +32,12 @@ const page = () => {
                     </div>
                 </div>
 
-                <div className="px-4 py-3 bg-purple-50 border-t border-purple-100">
-                    <button
+                <div className="px-4 py-3 bg-purple-50 border-t border-purple-100 w-full">
+                    <Link href="/exams/math"
                         className="w-full py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-purple-100 text-purple-600 hover:bg-purple-200"
                     >
-                        <Link href="/exams/math">Give Exam</Link>
-                    </button>
+                        Give Exam
+                    </Link>
                 </div>
             </div>
 
