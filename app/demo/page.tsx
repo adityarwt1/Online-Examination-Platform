@@ -201,7 +201,7 @@ export default function MathExam() {
         {
           id: "5ii",
           text: "The quadratic equation ax² + bx + c = 0 has real and equal roots if:",
-          options: ["b² - 4ac > 0", "b² - 4ac = 0", "b² - 4ac < 0", "b�� - 4ac ≠ 0"],
+          options: ["b² - 4ac > 0", "b² - 4ac = 0", "b² - 4ac < 0", "b² - 4ac ≠ 0"],
         },
         {
           id: "5iii",
@@ -613,7 +613,7 @@ export default function MathExam() {
       subQuestions: [
         {
           id: "5i",
-          text: "H.C.F. सं���्या 6 और 20 का मान है:",
+          text: "H.C.F. संख्या 6 और 20 का मान है:",
           options: ["2", "6", "20", "1"],
           answerMapping: {
             "2": "2",
@@ -945,8 +945,7 @@ export default function MathExam() {
                         className={`
                         flex items-center p-2 sm:p-3 rounded-md cursor-pointer
                         border-2 transition-all duration-200 mb-2
-                        ${
-                          submitted
+                        ${submitted
                             ? isCorrect
                               ? "bg-green-50 border-green-500"
                               : isSelected
@@ -955,7 +954,7 @@ export default function MathExam() {
                             : isSelected
                               ? "bg-purple-50 border-purple-500"
                               : "border-purple-100 hover:border-purple-300"
-                        }
+                          }
                       `}
                       >
                         <input
@@ -1056,10 +1055,9 @@ export default function MathExam() {
           <button
             onClick={() => setQuestionLanguage("english")}
             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
-              ${
-                questionLanguage === "english"
-                  ? "bg-purple-600 text-white"
-                  : "bg-purple-100 text-purple-800 hover:bg-purple-200"
+              ${questionLanguage === "english"
+                ? "bg-purple-600 text-white"
+                : "bg-purple-100 text-purple-800 hover:bg-purple-200"
               }`}
           >
             English
@@ -1067,10 +1065,9 @@ export default function MathExam() {
           <button
             onClick={() => setQuestionLanguage("hindi")}
             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
-              ${
-                questionLanguage === "hindi"
-                  ? "bg-purple-600 text-white"
-                  : "bg-purple-100 text-purple-800 hover:bg-purple-200"
+              ${questionLanguage === "hindi"
+                ? "bg-purple-600 text-white"
+                : "bg-purple-100 text-purple-800 hover:bg-purple-200"
               }`}
           >
             हिंदी
@@ -1082,11 +1079,9 @@ export default function MathExam() {
 
   const ExamSettings = () => {
     return (
-      <motion.div
+      <div
         className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg"
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        
       >
         <h2 className="text-2xl font-bold text-purple-800 mb-6 text-center">Exam Settings</h2>
 
@@ -1108,10 +1103,9 @@ export default function MathExam() {
             <button
               onClick={() => setQuestionLanguage("english")}
               className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-                ${
-                  questionLanguage === "english"
-                    ? "bg-purple-600 text-white"
-                    : "bg-purple-100 text-purple-800 hover:bg-purple-200"
+          ${questionLanguage === "english"
+                  ? "bg-purple-600 text-white"
+                  : "bg-purple-100 text-purple-800 hover:bg-purple-200"
                 }`}
             >
               English
@@ -1119,10 +1113,9 @@ export default function MathExam() {
             <button
               onClick={() => setQuestionLanguage("hindi")}
               className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-                ${
-                  questionLanguage === "hindi"
-                    ? "bg-purple-600 text-white"
-                    : "bg-purple-100 text-purple-800 hover:bg-purple-200"
+          ${questionLanguage === "hindi"
+                  ? "bg-purple-600 text-white"
+                  : "bg-purple-100 text-purple-800 hover:bg-purple-200"
                 }`}
             >
               हिंदी
@@ -1136,14 +1129,14 @@ export default function MathExam() {
             <button
               onClick={() => setPracticeMode(false)}
               className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-                ${!practiceMode ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-800 hover:bg-purple-200"}`}
+          ${!practiceMode ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-800 hover:bg-purple-200"}`}
             >
               Exam Mode
             </button>
             <button
               onClick={() => setPracticeMode(true)}
               className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-                ${practiceMode ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-800 hover:bg-purple-200"}`}
+          ${practiceMode ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-800 hover:bg-purple-200"}`}
             >
               Practice Mode
             </button>
@@ -1158,7 +1151,8 @@ export default function MathExam() {
         >
           Start Exam
         </motion.button>
-      </motion.div>
+      </div>
+
     )
   }
 
@@ -1242,7 +1236,7 @@ export default function MathExam() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl font-bold mb-2 text-purple-800">Class 10th Mathematics Board Examination 2025</h1>
+          <h1 className="text-3xl font-bold mb-2 text-purple-400">Class 10th Mathematics Board Examination 2025</h1>
           <p className="text-purple-600">Configure your exam settings below</p>
         </motion.header>
 
@@ -1255,7 +1249,7 @@ export default function MathExam() {
     <div className="min-h-screen bg-purple-50">
       <div className="max-w-4xl mx-auto p-2 sm:p-4">
         <motion.header
-          className="mb-4 sm:mb-6 text-center p-3 sm:p-6 bg-purple-700 text-white rounded-lg shadow-lg"
+          className="mb-4 sm:mb-6 text-center p-3 sm:p-6 bg-purple-100 text-white rounded-lg shadow-lg"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -1377,18 +1371,17 @@ export default function MathExam() {
                           key={index}
                           onClick={() => setCurrentQuestion(index)}
                           className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300
-                            ${
-                              currentQuestion === index
-                                ? "bg-purple-700 text-white"
-                                : submitted
-                                  ? isCorrect
-                                    ? "bg-green-100 text-green-800 border border-green-500"
-                                    : hasAnswered
-                                      ? "bg-red-100 text-red-800 border border-red-500"
-                                      : "bg-gray-100 text-gray-800 border border-gray-300"
+                            ${currentQuestion === index
+                              ? "bg-purple-700 text-white"
+                              : submitted
+                                ? isCorrect
+                                  ? "bg-green-100 text-green-800 border border-green-500"
                                   : hasAnswered
-                                    ? "bg-purple-100 text-purple-800 border border-purple-500"
-                                    : "bg-purple-50 text-purple-800 hover:bg-purple-100"
+                                    ? "bg-red-100 text-red-800 border border-red-500"
+                                    : "bg-gray-100 text-gray-800 border border-gray-300"
+                                : hasAnswered
+                                  ? "bg-purple-100 text-purple-800 border border-purple-500"
+                                  : "bg-purple-50 text-purple-800 hover:bg-purple-100"
                             }`}
                           layout
                           whileHover={{ scale: 1.1 }}
