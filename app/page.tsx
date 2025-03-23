@@ -1,9 +1,9 @@
-import Link from "next/link"
-import { ExamCard } from "@/components/exam-card"
-import { ResultCard } from "@/components/result-card"
-import { Hero } from "@/components/hero"
-import { Footer } from "@/components/footer"
-import { Navbar } from "@/components/navbar"
+import Link from "next/link";
+import { ExamCard } from "@/components/exam-card";
+import { ResultCard } from "@/components/result-card";
+import { Hero } from "@/components/hero";
+import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar";
 
 export default function Home() {
   const upcomingExams = [
@@ -31,7 +31,7 @@ export default function Home() {
       subject: "Physics",
       instructor: "Dr. Williams",
     },
-  ]
+  ];
 
   const recentResults = [
     {
@@ -58,18 +58,17 @@ export default function Home() {
       totalMarks: 100,
       grade: "A+",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-white">
-      
       <main>
         <Hero />
         <section className="container mx-auto px-4 py-12">
-          <h2 className="text-3xl font-bold text-purple-800 mb-8 gsap-fade-in">Upcoming Exams</h2>
+          <h2 className="text-3xl font-bold text-purple-800 mb-8">Upcoming Exams</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {upcomingExams.map((exam, index) => (
-              <ExamCard key={exam.id} exam={exam} index={index} />
+            {upcomingExams.map((exam) => (
+              <ExamCard key={exam.id} exam={exam} />
             ))}
           </div>
           <div className="mt-8 text-center">
@@ -83,10 +82,10 @@ export default function Home() {
         </section>
 
         <section className="container mx-auto px-4 py-12 bg-purple-50">
-          <h2 className="text-3xl font-bold text-purple-800 mb-8 gsap-fade-in">Recent Results</h2>
+          <h2 className="text-3xl font-bold text-purple-800 mb-8">Recent Results</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentResults.map((result, index) => (
-              <ResultCard key={result.id} result={result} index={index} />
+            {recentResults.map((result) => (
+              <ResultCard key={result.id} result={result} />
             ))}
           </div>
           <div className="mt-8 text-center">
@@ -101,6 +100,5 @@ export default function Home() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

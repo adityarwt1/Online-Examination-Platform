@@ -1,21 +1,29 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = "mongodb+srv://Aditya_RWT1:14920251@adityarwt1.m01hn.mongodb.net/";
+const MONGODB_URI = process.env.MONGODB_URI as string;
 
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
 let cached = (global as any).mongoose || { conn: null, promise: null };
-4
+
 export const connectDB = async () => {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
+    const opts = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    }).then((mongoose) => mongoose);
+    };
+
+    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
+      console.log('Connected to MongoDB');
+      return mongoose;
+    }).catch((err) => {
+      console.error('Failed to connect to MongoDB:', err);
+      throw err;
+    });
   }
 
   cached.conn = await cached.promise;

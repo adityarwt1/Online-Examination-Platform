@@ -34,7 +34,7 @@ const page = () => {
 
                 <div className="px-4 py-3 bg-purple-50 border-t border-purple-100 w-full">
                     <Link href="/exams/math"
-                        className="w-full py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-purple-100 text-purple-600 hover:bg-purple-200"
+                        className="m-4 w-full py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-purple-100 text-purple-600 hover:bg-purple-200"
                     >
                         Give Exam
                     </Link>

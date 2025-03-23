@@ -1,74 +1,39 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
-  const heroRef = useRef(null)
-  const titleRef = useRef(null)
-  const subtitleRef = useRef(null)
-  const buttonRef = useRef(null)
-  const imageRef = useRef(null)
-
-  useEffect(() => {
-    const tl = gsap.timeline()
-
-    tl.from(titleRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-    })
-      .from(
-        subtitleRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        },
-        "-=0.4",
-      )
-      .from(
-        buttonRef.current,
-        {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power3.out",
-        },
-        "-=0.4",
-      )
-      .from(
-        imageRef.current,
-        {
-          x: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-        },
-        "-=0.6",
-      )
-  }, [])
-
   return (
-    <div ref={heroRef} className="bg-gradient-to-br from-white to-purple-50 py-16 md:py-24">
+    <div className="bg-gradient-to-br from-white to-purple-50 py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
+          {/* Text Content */}
           <div className="md:w-1/2 mb-10 md:mb-0">
-            <h1
-              ref={titleRef}
+            <motion.h1
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-purple-900 leading-tight mb-4"
             >
               Ace Your Exams with Confidence
-            </h1>
-            <p ref={subtitleRef} className="text-lg md:text-xl text-gray-700 mb-8 max-w-lg">
+            </motion.h1>
+            <motion.p
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+              className="text-lg md:text-xl text-gray-700 mb-8 max-w-lg"
+            >
               Our online examination platform provides a seamless experience for students and educators. Take exams,
               track progress, and achieve your academic goals.
-            </p>
-            <div ref={buttonRef} className="flex space-x-4">
+            </motion.p>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+              className="flex space-x-4"
+            >
               <Link
                 href="/exams"
                 className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-300"
@@ -81,18 +46,24 @@ export function Hero() {
               >
                 View Demo
               </Link>
-            </div>
+            </motion.div>
           </div>
-          <div ref={imageRef} className="md:w-1/2">
+
+          {/* Image */}
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 1.2 }}
+            className="md:w-1/2"
+          >
             <img
               src="/placeholder.svg?height=400&width=500"
               alt="Online Examination Platform"
               className="w-full h-auto rounded-lg shadow-xl"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
