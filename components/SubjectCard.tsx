@@ -11,6 +11,7 @@ interface SubjectCardProps {
   questionCount: number;
   icon: string;
   color: string;
+  standered:string;
   index: number;
 }
 
@@ -20,6 +21,7 @@ export function SubjectCard({
   questionCount,
   icon,
   color,
+  standered,
   index
 }: SubjectCardProps) {
   return (
@@ -29,7 +31,7 @@ export function SubjectCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <Link href={`/exams/${year}/${subject.toLowerCase().replace(' ', '-')}`}>
+      <Link href={`/exams/${standered}/${year}/${subject.toLowerCase().replace(' ', '-')}`}>
         <div className={`bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-${color}-100 hover:border-${color}-300`}>
           <div className="flex items-start justify-between mb-4">
             <div className={`w-12 h-12 rounded-full bg-${color}-100 flex items-center justify-center`}>
