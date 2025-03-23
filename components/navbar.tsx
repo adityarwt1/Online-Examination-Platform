@@ -136,7 +136,7 @@ export function Navbar() {
       {/* Mobile Navigation */}
       <div ref={mobileMenuRef} className="md:hidden overflow-hidden h-0 opacity-0">
         <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
-          {["dashboard", "classwise", "exams", "results", "resources", "support"].map((item) => (
+          {["classwise", "exams", "results", "resources", "support"].map((item) => (
             <Link
               key={item}
               href={`/${item}`}

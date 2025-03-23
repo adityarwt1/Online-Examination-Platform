@@ -1030,7 +1030,7 @@ export default function MathExam() {
     setExamStarted(true)
     setTimeRemaining(examDuration * 60)
 
-    timerRef.current = setInterval(() => {
+    timerRef.current= setInterval(() => {
       setTimeRemaining((prev) => {
         if (prev <= 1) {
           clearInterval(timerRef.current)
