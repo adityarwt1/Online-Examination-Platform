@@ -65,7 +65,7 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {["dashboard", "classwise", "exams", "results", "resources", "support"].map((item) => (
+            {["Home", "classwise", "exams", "results", "resources", "support"].map((item) => (
               <Link
                 key={item}
                 href={`/${item}`}
