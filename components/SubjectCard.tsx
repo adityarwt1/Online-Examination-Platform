@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { BookOpen, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 interface SubjectCardProps {
   subject: string;
@@ -32,7 +33,7 @@ export function SubjectCard({
         <div className={`bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-${color}-100 hover:border-${color}-300`}>
           <div className="flex items-start justify-between mb-4">
             <div className={`w-12 h-12 rounded-full bg-${color}-100 flex items-center justify-center`}>
-              <img src={icon} alt={subject} className="w-6 h-6" />
+              <Image src={icon} alt={subject} width={200} height={200}/>
             </div>
             <span className={`text-sm font-medium text-${color}-600 bg-${color}-50 px-3 py-1 rounded-full`}>
               {year}

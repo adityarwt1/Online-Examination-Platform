@@ -16,8 +16,23 @@ import {
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const navRef = useRef(null)
   const mobileMenuRef = useRef(null)
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // GSAP animation for navbar on mount
   useEffect(() => {
@@ -54,7 +69,14 @@ export function Navbar() {
   }
 
   return (
-    <nav ref={navRef} className="bg-white border-b border-purple-100 sticky top-0 z-50 shadow-sm">
+    <nav 
+      ref={navRef} 
+      className={`sticky top-0 z-50 transition-all duration-300
+        ${isScrolled 
+          ? 'bg-white/80 backdrop-blur-md border-b border-purple-100/50 shadow-lg'
+          : 'bg-white border-b border-purple-100 shadow-sm'
+        }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -65,7 +87,7 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {["Home", "classwise", "exams", "results", "resources", "support"].map((item) => (
+            {["Home", "classwise", "exams", "support"].map((item) => (
               <Link
                 key={item}
                 href={`/${item}`}
@@ -134,7 +156,11 @@ export function Navbar() {
       </div>
 
       {/* Mobile Navigation */}
-      <div ref={mobileMenuRef} className="md:hidden overflow-hidden h-0 opacity-0">
+      <div 
+        ref={mobileMenuRef} 
+        className={`md:hidden overflow-hidden h-0 opacity-0
+          ${isScrolled ? 'bg-white/80 backdrop-blur-md' : 'bg-white'}`}
+      >
         <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
           {["classwise", "exams", "results", "resources", "support"].map((item) => (
             <Link
