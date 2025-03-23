@@ -17,7 +17,7 @@ export function Hero() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-purple-900 leading-tight mb-4"
             >
-              Ace Your Exams with Confidence
+              Practice Smarter, Score Higher with Real Exam Questions
             </motion.h1>
             <motion.p
               initial={{ y: 30, opacity: 0 }}
@@ -25,8 +25,7 @@ export function Hero() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
               className="text-lg md:text-xl text-gray-700 mb-8 max-w-lg"
             >
-              Our online examination platform provides a seamless experience for students and educators. Take exams,
-              track progress, and achieve your academic goals.
+              Access thousands of previous MCQs from real exams, track your progress, and identify knowledge gaps to maximize your study efficiency.
             </motion.p>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -57,8 +56,8 @@ export function Hero() {
             className="md:w-1/2"
           >
             <img
-              src="/placeholder.svg?height=400&width=500"
-              alt="Online Examination Platform"
+              src="/graduation-celebration.svg"
+              alt="Student celebrating exam success"
               className="w-full h-auto rounded-lg shadow-xl"
             />
           </motion.div>
