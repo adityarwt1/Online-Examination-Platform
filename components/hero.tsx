@@ -34,7 +34,7 @@ export function Hero() {
               className="flex space-x-4"
             >
               <Link
-                href="/exams"
+                href="/classwise"
                 className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-300"
               >
                 Get Started <ArrowRight className="ml-2 h-5 w-5" />
@@ -56,7 +56,7 @@ export function Hero() {
             className="md:w-1/2"
           >
             <img
-              src="/graduation-celebration.svg"
+              src="/graduation-celebration.png"
               alt="Student celebrating exam success"
               className="w-full h-auto rounded-lg shadow-xl"
             />
