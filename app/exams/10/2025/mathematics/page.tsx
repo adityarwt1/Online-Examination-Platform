@@ -1585,12 +1585,12 @@ export default function MathExam() {
                     onClick={() => {
                       // Create the download function
                       const downloadPDF = () => {
-                        const pdfPath = '/papers/10/2025_mathematics.pdf';
+                        const pdfPath = '/10_2025_math_.pdf';
 
                         // Create an anchor element
                         const link = document.createElement('a');
                         link.href = pdfPath;
-                        link.setAttribute('download', 'original-paper.pdf');
+                        link.setAttribute('download', pdfPath);
                         link.setAttribute('target', '_blank');
 
                         // Append to the document body

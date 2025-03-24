@@ -1436,7 +1436,7 @@ At the realio, trulio cowardly dragon.`,
                     onClick={() => {
                       // Create the download function
                       const downloadPDF = () => {
-                        const pdfPath = "/papers/english/2025_english.pdf"
+                        const pdfPath = "/10_2025_english.pdf"
 
                         // Create an anchor element
                         const link = document.createElement("a")
