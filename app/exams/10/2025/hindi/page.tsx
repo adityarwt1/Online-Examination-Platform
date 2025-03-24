@@ -65,11 +65,11 @@ export default function SocialScienceExam() {
                 "10",
                 "साठ से ऊपर",
                 "जीने की इच्छा",
-                 "अज्ञेय"],
+                "अज्ञेय"],
             marks: 6,
             category: "General Knowledge",
             explanation:
-                "1. परुशुराम ने सहस्रबाहु को कामधेनु गे चुराने के जुर्म में मारा था| 2. कामायनी एक महाकाव्य है, जो की जयशंकर प्रसाद द्वारा लिखी गई थी| 3. कहानी के अनुसार बालगोविन भगत की आयु साथ से ऊपर थी| 4. रस के 9 भेद होते है लेकिन बोर्ड एग्जाम में 10 थे तो आप्शन देना पड़ता है| 5. जिजिविषा का अर्थ जय जीने की इच्छा| 6. मै क्यों लिखता हु को अज्ञेय ने लिखा था अपनी रूचियो के दम पे या पैसो के लिए|",
+                "1. परुशुराम ने सहस्रबाहु को कामधेनु गे चुराने के जुर्म में मारा था| 2. कामायनी एक महाकाव्य है, जो की जयशंकर प्रसाद द्वारा लिखी गई थी| 3. कहानी के अनुसार बालगोविन भगत की आयु साठ से ऊपर थी| 4. रस के 9 भेद होते है लेकिन बोर्ड एग्जाम में 10 थे तो आप्शन देना पड़ता है| 5. जिजिविषा का अर्थ  जीने की इच्छा| 6. मै क्यों लिखता हु को अज्ञेय ने लिखा था अपनी रूचियो के दम पे या पैसो के लिए|",
         },
         {
             id: 2,
@@ -111,7 +111,12 @@ export default function SocialScienceExam() {
             marks: 6,
             category: "General Knowledge",
             explanation:
-                `1. यह वाक्य एक कल्पना है, क्योंकि कमल आमतौर पर तालाबों या अन्य जलस्रोतों में खिलते हैं, आकाश में नहीं. नहीं, 2. "छुपाई" छंद, जिसे चौपाई भी कहते हैं, एक सम मात्रिक छंद है, न कि अर्ध-सम मात्रिक. 3.  नहीं, शीला अग्रवाल, मन्नू भंडारी की हिन्दी अध्यापिका थीं, ना कि उनकी माँ। मन्नू भंडारी की माँ का नाम अनूपकुंवरि था .4. उस्ताद बिस्मिल्ला खाँ को भारत रत्न, भारत का सर्वोच्च नागरिक सम्मान, 2001 में प्राप्त हुआ था 5. यह कथन पूर्ण रूप से सत्य है. 6. हां, सभ्यता संस्कृति का परिणाम है. सभ्यता और संस्कृति, दोनों ही समाज की अभिव्यक्ति के ज़रिए लोगों को परिभाषित करते हैं.`,
+                `1. यह वाक्य एक कल्पना है, क्योंकि कमल आमतौर पर तालाबों या अन्य जलस्रोतों में खिलते हैं, आकाश में नहीं. नहीं, 
+                2. "छुपाई" छंद, जिसे चौपाई भी कहते हैं, एक सम मात्रिक छंद है, न कि अर्ध-सम मात्रिक.
+                3.  नहीं, शीला अग्रवाल, मन्नू भंडारी की हिन्दी अध्यापिका थीं, ना कि उनकी माँ। मन्नू भंडारी की माँ का नाम अनूपकुंवरि था 
+                4. उस्ताद बिस्मिल्ला खाँ को भारत रत्न, भारत का सर्वोच्च नागरिक सम्मान, 2001 में प्राप्त हुआ था 
+                5. यह कथन पूर्ण रूप से सत्य है. 
+                6. हां, सभ्यता संस्कृति का परिणाम है. सभ्यता और संस्कृति, दोनों ही समाज की अभिव्यक्ति के ज़रिए लोगों को परिभाषित करते हैं.`,
         },
         {
             id: 3,
@@ -195,7 +200,7 @@ export default function SocialScienceExam() {
                 {
                     id: "4i",
                     text: "किसकी अभा अट नहीं रही है|",
-                    options: ["वैशाख","फाल्गुन", "वसंत", "माघ" ],
+                    options: ["वैशाख", "फाल्गुन", "वसंत", "माघ"],
                 },
                 {
                     id: "4ii",
@@ -205,372 +210,138 @@ export default function SocialScienceExam() {
                 {
                     id: "4iii",
                     text: "नेताजी सुभाष चन्द्र बोष की प्रतिमा कहा लगवाई गई थी |",
-                    options: ["Manufacturing", "नगर के बीच में", "चौराहे पर", "तिराहे पर",],
+                    options: ["बस्ट के ऊपर", "नगर के बीच में", "चौराहे पर", "तिराहे पर",],
                 },
                 {
                     id: "4iv",
-                    text: "What was the main channel (medium) connecting countries in the past?",
-                    options: ["Trade routes", "Postal service", "Telegraph", "Radio"],
+                    text: "काला अक्षर भैस बराबर का अर्थ है|",
+                    options: ["अनपढ़ होना", "अपठित", "उमींद से ज्यादा बड़ा होना", "समझा ना आना"],
                 },
                 {
                     id: "4v",
-                    text: "A violent conflict between government opposing groups within a country that becomes so intense, appears like a war called what?",
-                    options: ["Civil war", "Coup", "Revolution", "Insurgency"],
+                    text: `बापू जी 'रामनामा बही' में कितने बार राम नाम लिखते थे|`,
+                    options: ["200", "500", "1000", "700"],
                 },
                 {
                     id: "4vi",
-                    text: "Which is the most convenient means of transport?",
-                    options: ["Airways", "Railways", "Roadways", "Waterways"],
+                    text: `"साना-साना हाथ जोड़ी" पाठ के आधार पर पहाड़ी कुत्ते कब भौकते है|`,
+                    options: ["चाँदनी रातों में", "भोर में", "संध्या को", "मध्य रात्रि में"],
                 },
             ],
-            answers: ["Mumbai", "1914-1918", "Manufacturing", "Trade routes", "Civil war", "Airways"],
+            answers: ["फाल्गुन", "2", "चौराहे पर", "अनपढ़ होना", "1000", "चाँदनी रातों में"],
             marks: 6,
-            category: "History & Geography",
+            category: "हिंदी",
             explanation:
-                "India's first cotton mill was in Mumbai. WWI was from 1914-1918. Manufacturing is a secondary sector activity. Trade routes connected countries in the past. Civil war is an intense internal conflict. Airways are generally considered the most convenient transport.",
+                "1. कवी नागार्जुन के अनुसार फाल्गुन की सुन्दरता उनको इतना मोह ली की इनके मन में समां नहीं रही है . 2. प्रबंध काव्य के दो भेद होते है मात्र महाकाव्य और खंडकाव्य 3. नेता जी की मूर्ति चौराहे पर लगवाई गई थी जो की मुख्या बाजार में थी लेकिन मुख्या बाजार में ही अन्य चीज़े तिराहा सब कुछ अत है इसलिए चौराहा सही उत्तर है उतर है 4. काला अक्षर भैस बर्बर मतलब अनपढ़ क्योकि कलि तो भाई और अक्षर दोनों है लेकिन समझ 5. तारकेश्वर नाथ के पिता 1000 बार रामनाम बही में राम लिखते थे 6. पाढ के अनुसार पहड़ी कुत्ते यानि के वहा के लोग रात में भौकते है क्योकि वो सुबह होने से पहले ही अपना कार्य शिरू कर देते है| ",
         },
         {
             id: 5,
             type: "mcq",
-            text: "Choose and write the correct option:",
+            text: "सही विकल्प चुनिए:",
             subQuestions: [
                 {
                     id: "5i",
-                    text: "Rio-de-Janeiro in Brazil, Earth Summit was held in which year?",
-                    options: ["June, 1992", "July, 1991", "June, 1929", "July, 1992"],
+                    text: "वात्सल्य के श्रेष्ठ कवि कौन माने जाते है|",
+                    options: ["तुलसीदास", "सूरदास", "कबीरदास", "जयशंकर प्रसाद"],
                 },
                 {
                     id: "5ii",
-                    text: "The Mundas and the Santhals tribes of Chota Nagpur region worship which trees?",
-                    options: ["Palash and Kadamba", "Gular and Arjun", "Mahua and Kadamba", "Mahua and Neem"],
+                    text: "हवा की थिरकन का सिमटा हुआ संकोच मन जाता है|",
+                    options: ["मिट्टी को", "फसल को", "आकाश को", "बरसात को"],
                 },
                 {
                     id: "5iii",
-                    text: "The largest water resource project of India covering four states - Maharashtra, Madhya Pradesh, Gujarat and Rajasthan is:",
-                    options: ["Sardar Sarovar Dam", "Koyna Dam", "Hirakud Dam", "Gandhi Sagar Dam"],
+                    text: "वीर रस का स्थाई भाव है:-",
+                    options: ["क्रोध", "उत्साह", "भय", "रति"],
                 },
                 {
                     id: "5iv",
-                    text: "Main staple food crop of India is:",
-                    options: ["Tea", "Jute", "Paddy", "Rubber"],
+                    text: "हालदार साहब को कम्पनी के काम से कस्बे से गुजरना पड़ता था-",
+                    options: ["हर रोज", "हर दूसरे दिन", "हर पंद्रहवे दिन", "हर तेरहवे दिन"],
                 },
                 {
                     id: "5v",
-                    text: "Famous book of Mahatma Gandhi is:",
-                    options: ["Godan", "Hind Swaraj", "Gitanjali", "India - a Discovery"],
+                    text: "वाच्य के प्रकार होते है:-",
+                    options: ["4", "3", "5", "2"],
                 },
                 {
                     id: "5vi",
-                    text: "H.D.I. means:",
-                    options: ["Human Development", "Human Growth Index", "Human Income", "Human Development Index"],
+                    text: "मधु कांकरिया का सहेली का नाम था:-",
+                    options: ["मणि", "जितेन", "प्रियंवदा", "बसुन्धरा"],
                 },
             ],
             answers: [
-                "June, 1992",
-                "Mahua and Kadamba",
-                "Sardar Sarovar Dam",
-                "Paddy",
-                "Hind Swaraj",
-                "Human Development Index",
+                "सूरदास",
+                "फसल को",
+                "उत्साह",
+                "हर पंद्रहवे दिन",
+                "3",
+                "मणि",
             ],
             marks: 6,
             category: "General Knowledge",
             explanation:
-                "The Earth Summit was held in June 1992. Mundas and Santhals worship Mahua and Kadamba trees. Sardar Sarovar is the largest water project covering 4 states. Paddy (rice) is India's main staple food. Hind Swaraj was written by Gandhi. HDI stands for Human Development Index.",
+                "1. वात्सल्य के श्रेष्ठ कवि सूरदास को इसलिए मन जाता है क्योकि उन्होंने कृष्ण प्रेम से सम्बंधित बहुत साडी रचनाये की है. 2. फसल को इसलिए कहा गया है क्योकि वहा के न चलने पर वह झुकी हुए और सिमटी हुयी रहतुई है. 3. वीर रस का स्थाई भाव उत्साह है क्योकि उनको सुनाने के बाद मन में उत्साह भर जाता है जैसे खूब लड़ी मर्दानी थी वो तो झांसी वाली रानी थी . 4. नेताजी के चश्मा वाली कहानी के अनुसार वह हर पंद्रहवे दिन आना जाना रहता था 5. वाच्य के तीन प्रकार जैसे कत्रिवच्या, कर्मवाच्य और भावाच्य 6. साना साना हाथ जोड़ी के अनुसार लेखिका के सहेली का नाम मणि था",
         },
         {
             id: 6,
             type: "short-answer",
-            text: "Who was Giuseppe Mazzini?",
+            text: `"राम-लक्ष्मण परशुराम संवाद" पाठ के आधार पर राम के स्वभाव की दो विशेषताएँ लिखिए। `,
             options: [
-                "An Italian revolutionary who founded Young Italy movement",
-                "A French philosopher of the Enlightenment period",
-                "A German military general during World War I",
-                "A Russian communist leader",
+                "अहंकार और क्रोध",
+                "विनम्रता और धैर्य",
+                "अधीरता और अभिमान",
+                "निर्ममता और कठोरता",
             ],
-            answer: "An Italian revolutionary who founded Young Italy movement",
+            answer: "विनम्रता और धैर्य",
             marks: 2,
-            category: "History",
+            category: "हिंदी",
             explanation:
-                "Giuseppe Mazzini (1805-1872) was an Italian revolutionary who founded the Young Italy movement. He was a key figure in the Italian unification movement and advocated for a unified republican Italy.",
+                "राम ने विनम्रता से अपनी गलती स्वीकार की और धैर्य पूर्ण रखते हुए परशुराम की बातो जवाब दिया.",
         },
         {
             id: 7,
             type: "short-answer",
-            text: "What is Utopian?",
+            text: "खण्डकाव्य किसे कहते हैं? ",
             options: [
-                "An idealistic but impractical social or political scheme",
-                "A mathematical concept in geometry",
-                "An ancient Greek philosophy",
-                "A type of economic system",
+                "किसी महापुरुष या लोकनायक के जीवन की किसी एक महत्वपूर्ण घटना या प्रसंग का",
+                "किसी काल्पनिक कथा का",
+                "प्राकृतिक दृश्यावलियों का",
+                "दैनिक जीवन की सामान्य घटनाओं का",
             ],
-            answer: "An idealistic but impractical social or political scheme",
+            answer: "किसी महापुरुष या लोकनायक के जीवन की किसी एक महत्वपूर्ण घटना या प्रसंग का",
             marks: 2,
-            category: "Political Science",
+            category: "हिंदी",
             explanation:
-                "Utopian refers to an idealistic but often impractical vision of a perfect society. The term comes from Sir Thomas More's book 'Utopia' (1516), which described an imaginary island with a perfect social and political system.",
+                "यह महाकव्य  से छोटा होता है इसलिए महत्वपूर्ण घटनाओ का उल्लेख किया जाता है|",
         },
         {
             id: 8,
             type: "short-answer",
-            text: "What do you understand by Boycott?",
+            text: "अतिशयोक्ति अलंकार की परिभाषा उदाहरण सहित लिखिए। ",
             options: [
-                "A form of protest where people refuse to buy, use, or participate in something",
-                "A type of parliamentary procedure",
-                "A military strategy",
-                "An economic policy to increase exports",
+                "समानता का वर्णन",
+                "विपरीत का वर्णन",
+                "बढ़ा-चढ़ाकर वर्णन​",
+                "सौंदर्य का वर्णन",
             ],
-            answer: "A form of protest where people refuse to buy, use, or participate in something",
+            answer: "बढ़ा-चढ़ाकर वर्णन​",
             marks: 2,
-            category: "Political Science",
+            category: "",
             explanation:
-                "Boycott is a form of protest where people refuse to buy, use, or participate in something as a way of expressing disapproval or forcing acceptance of certain conditions. It was a key strategy during India's freedom movement.",
+                `जब किसी वस्तु, व्यक्ति या स्थिति का वर्णन इस प्रकार बढ़ा-चढ़ाकर किया जाए कि वह वास्तविकता से परे प्रतीत हो, अर्थात् सामान्य लोक सीमा का उल्लंघन हो जाए, तो उसे अतिशयोक्ति अलंकार कहते हैं। ​
+                        उदाहरण:
+
+                        उनकी आँखों से गंगा-यमुना बह निकलीं।​
+
+                        यहाँ 'आँखों से गंगा-यमुना बहना' कहकर आँसुओं की अधिकता को अतिशयोक्ति के माध्यम से व्यक्त किया गया है।
+
+                        हनुमान की पूँछ में आग लगते ही पूरी लंका जलकर राख हो गई।​
+
+
+                        इसमें हनुमान की पूँछ में आग लगने की घटना को इतना बढ़ा-चढ़ाकर प्रस्तुत किया गया है कि पूरी लंका के जलने की बात कही गई है, जो वास्तविकता से परे है।`,
         },
-        {
-            id: 9,
-            type: "short-answer",
-            text: "Write two points about Jallianwalla Bagh massacre.",
-            answer:
-                "The Jallianwalla Bagh massacre took place on April 13, 1919, in Amritsar, Punjab. General Dyer ordered troops to fire on a peaceful gathering, killing hundreds of unarmed Indians. It was a turning point in India's freedom struggle and led to increased support for the independence movement.",
-            marks: 2,
-            category: "History",
-            explanation:
-                "The Jallianwalla Bagh massacre was a pivotal event in India's freedom struggle where British troops under General Dyer fired on unarmed civilians gathered in an enclosed garden, killing hundreds and wounding many more.",
-        },
-        {
-            id: 10,
-            type: "short-answer",
-            text: "Write two points about Silk Routes.",
-            answer:
-                "The Silk Routes were a network of trade routes connecting the East and West, primarily China to the Mediterranean. They were used for trading silk, spices, textiles, and other goods, and also facilitated cultural exchange between different civilizations.",
-            marks: 2,
-            category: "History",
-            explanation:
-                "The Silk Routes were ancient trade networks that connected East Asia to South Asia, Persia, the Arabian Peninsula, East Africa, and Southern Europe. They were instrumental in the development of many civilizations and facilitated cultural exchange.",
-        },
-        {
-            id: 11,
-            type: "short-answer",
-            text: "Write two qualities of Spinning Jenny.",
-            options: [
-                "It could spin multiple threads simultaneously, increasing productivity",
-                "It was water-powered, reducing manual labor",
-                "It used steam power to operate",
-                "It was portable and could be used in homes",
-            ],
-            answer: "It could spin multiple threads simultaneously, increasing productivity",
-            marks: 2,
-            category: "History",
-            explanation:
-                "The Spinning Jenny, invented by James Hargreaves in 1764, was a multi-spindle spinning frame that could spin multiple threads simultaneously, greatly increasing productivity. It was also relatively small and could be used in homes, unlike later industrial machines.",
-        },
-        {
-            id: 12,
-            type: "short-answer",
-            text: "What is the meaning of Tariff?",
-            options: [
-                "A tax imposed on imported or exported goods",
-                "A type of government subsidy",
-                "A form of direct taxation",
-                "A price control mechanism",
-            ],
-            answer: "A tax imposed on imported or exported goods",
-            marks: 2,
-            category: "Economics",
-            explanation:
-                "A tariff is a tax imposed by a government on goods and services imported from other countries. Tariffs are used to restrict trade, as they increase the price of imported goods and services, making them more expensive to consumers.",
-        },
-        {
-            id: 13,
-            type: "short-answer",
-            text: "What happened when Corn Law was scrapped in Britain?",
-            answer:
-                "When the Corn Laws were repealed in 1846, food prices in Britain fell as cheaper imports became available. This benefited industrial workers but hurt agricultural interests. It marked Britain's shift toward free trade policies and accelerated industrialization.",
-            marks: 2,
-            category: "History",
-            explanation:
-                "The repeal of the Corn Laws in 1846 marked Britain's move toward free trade. It led to cheaper food imports, benefiting urban workers but hurting agricultural interests. It symbolized the rising power of industrial interests over landed aristocracy.",
-        },
-        {
-            id: 14,
-            type: "short-answer",
-            text: "Write two points of importance of Printing or Print Media.",
-            answer:
-                "Print media allows for the mass dissemination of information and ideas. It creates a permanent record of events and knowledge, enabling preservation and wider access. It played a crucial role in social and political movements by spreading ideas and mobilizing public opinion.",
-            marks: 2,
-            category: "History",
-            explanation:
-                "Print media revolutionized communication by enabling mass production and distribution of written material. It democratized knowledge, supported the spread of new ideas, and played a crucial role in social and political movements throughout history.",
-        },
-        {
-            id: 15,
-            type: "short-answer",
-            text: "Explain effects of 'Print on Women'.",
-            answer:
-                "Print media helped in spreading awareness about women's rights and issues. It provided a platform for women writers and activists to express their views. Women's magazines and literature contributed to changing perceptions about gender roles and encouraged women's education and participation in public life.",
-            marks: 2,
-            category: "History",
-            explanation:
-                "Print media had significant impacts on women's lives by providing access to education and information, creating platforms for women's voices, and supporting women's movements. Women's magazines and literature helped challenge traditional gender roles.",
-        },
-        {
-            id: 16,
-            type: "short-answer",
-            text: "What is Feminist Movement?",
-            options: [
-                "A social movement advocating for women's rights and gender equality",
-                "A literary movement focused on female authors",
-                "An economic theory about women in the workforce",
-                "A political party representing women's interests",
-            ],
-            answer: "A social movement advocating for women's rights and gender equality",
-            marks: 2,
-            category: "Political Science",
-            explanation:
-                "The feminist movement is a series of social movements and ideologies that aim to define and establish political, economic, personal, and social equality of the sexes. It has gone through several 'waves' addressing different aspects of gender inequality.",
-        },
-        {
-            id: 17,
-            type: "short-answer",
-            text: "Write two characteristics of Indian ideal woman in society.",
-            answer:
-                "Traditionally, the ideal Indian woman was expected to be devoted to family, self-sacrificing, and nurturing. She was also expected to uphold cultural traditions, religious values, and maintain family honor. These ideals have evolved over time with changing social norms and women's movements.",
-            marks: 2,
-            category: "Sociology",
-            explanation:
-                "Traditional Indian society often idealized women who embodied qualities like devotion to family, self-sacrifice, modesty, and preservation of cultural traditions. These ideals have been both celebrated and challenged as society evolves.",
-        },
-        {
-            id: 18,
-            type: "short-answer",
-            text: "Write importance of Democracy.",
-            answer:
-                "Democracy ensures people's participation in governance through elections. It protects fundamental rights and freedoms of citizens. It promotes equality and dignity for all citizens regardless of their background. It allows for peaceful transfer of power and provides mechanisms for resolving conflicts.",
-            marks: 2,
-            category: "Political Science",
-            explanation:
-                "Democracy is important because it ensures citizen participation in governance, protects fundamental rights, promotes equality, allows for peaceful power transitions, and provides mechanisms for accountability and conflict resolution.",
-        },
-        {
-            id: 19,
-            type: "short-answer",
-            text: "Why do lenders ask for collateral (Security) while lending?",
-            options: [
-                "To secure the loan in case the borrower defaults on repayment",
-                "To increase the interest rate on the loan",
-                "To comply with government regulations",
-                "To establish a long-term relationship with the borrower",
-            ],
-            answer: "To secure the loan in case the borrower defaults on repayment",
-            marks: 2,
-            category: "Economics",
-            explanation:
-                "Lenders ask for collateral to reduce their risk. If a borrower fails to repay the loan, the lender can sell the collateral to recover their money. Collateral also serves as an incentive for borrowers to repay loans on time.",
-        },
-        {
-            id: 20,
-            type: "short-answer",
-            text: "What are the various ways by which people may be exploited in the market?",
-            answer:
-                "People can be exploited through unfair pricing, misleading advertisements, sale of adulterated or substandard goods, use of false weights and measures, and lack of proper information about products. Exploitation also occurs through unfair contract terms, hidden charges, and monopolistic practices that limit consumer choices.",
-            marks: 2,
-            category: "Economics",
-            explanation:
-                "Market exploitation occurs in various forms including unfair pricing, misleading advertising, adulteration of products, false weights and measures, hidden charges, and monopolistic practices that disadvantage consumers.",
-        },
-        {
-            id: 21,
-            type: "short-answer",
-            text: "Name two movements for conservation of forest.",
-            options: [
-                "Chipko Movement and Appiko Movement",
-                "Narmada Bachao Andolan and Chipko Movement",
-                "Silent Valley Movement and Save Amazon Movement",
-                "Green Belt Movement and Chipko Movement",
-            ],
-            answer: "Chipko Movement and Appiko Movement",
-            marks: 2,
-            category: "Environmental Studies",
-            explanation:
-                "The Chipko Movement began in the 1970s in Uttarakhand, India, where villagers, primarily women, hugged trees to prevent them from being cut down. The Appiko Movement was a southern version of the Chipko Movement that started in Karnataka in 1983 to protect the Western Ghats forests.",
-        },
-        {
-            id: 22,
-            type: "long-answer",
-            text: "Explain any two of the following: Simon Commission, Dandi March, Quit India Movement, Mahatma Gandhiji's views on Satyagraha",
-            answer:
-                "Simon Commission (1928): It was appointed by the British government to report on the working of the Indian constitution. It faced widespread protests in India because it had no Indian members. The boycott of the Simon Commission united different political factions in India.\n\nDandi March (1930): Led by Mahatma Gandhi, this was a 24-day march to produce salt from seawater, breaking the British salt monopoly. It was a key event in the Civil Disobedience Movement and inspired widespread participation in the freedom struggle.",
-            marks: 4,
-            category: "History",
-            explanation:
-                "These were key events/concepts in India's freedom struggle. The Simon Commission (1928) with no Indian members sparked nationwide protests. The Dandi March (1930) challenged the British salt monopoly. The Quit India Movement (1942) demanded immediate independence. Satyagraha was Gandhi's philosophy of non-violent resistance.",
-        },
-        {
-            id: 23,
-            type: "map",
-            text: "Show the following areas in the map of India:",
-            subQuestions: [
-                {
-                    id: "23i",
-                    text: "Mumbai High",
-                    coordinates: { x: 72.3, y: 19.1 },
-                    tolerance: 50,
-                },
-                {
-                    id: "23ii",
-                    text: "Delhi",
-                    coordinates: { x: 77.2, y: 28.6 },
-                    tolerance: 50,
-                },
-                {
-                    id: "23iii",
-                    text: "Raniganj",
-                    coordinates: { x: 87.1, y: 23.6 },
-                    tolerance: 50,
-                },
-                {
-                    id: "23iv",
-                    text: "Tuticorin",
-                    coordinates: { x: 78.1, y: 8.8 },
-                    tolerance: 50,
-                },
-            ],
-            marks: 4,
-            category: "Geography",
-            explanation:
-                "Mumbai High is an offshore oil field in the Arabian Sea. Delhi is India's capital in the north. Raniganj is a coal mining area in West Bengal. Tuticorin (now Thoothukudi) is a port city in Tamil Nadu.",
-            alternateSet: {
-                text: "Show the following areas in the map of India:",
-                subQuestions: [
-                    {
-                        id: "23alt-i",
-                        text: "Digboi",
-                        coordinates: { x: 95.6, y: 27.4 },
-                        tolerance: 50,
-                    },
-                    {
-                        id: "23alt-ii",
-                        text: "Goa",
-                        coordinates: { x: 74.1, y: 15.3 },
-                        tolerance: 50,
-                    },
-                    {
-                        id: "23alt-iii",
-                        text: "Durg",
-                        coordinates: { x: 81.3, y: 21.2 },
-                        tolerance: 50,
-                    },
-                    {
-                        id: "23alt-iv",
-                        text: "Lakshadweep",
-                        coordinates: { x: 73.0, y: 10.6 },
-                        tolerance: 50,
-                    },
-                ],
-                explanation:
-                    "Digboi is India's oldest oil refinery in Assam. Goa is India's smallest state on the western coast. Durg is an industrial city in Chhattisgarh. Lakshadweep is a union territory of islands in the Arabian Sea.",
-            },
-        },
+        ,
     ]
 
     // Hindi translations
@@ -1837,18 +1608,9 @@ export default function SocialScienceExam() {
                     {questionLanguage === "hindi" ? "Question Language:" : "Question Language:"}
                 </span>
                 <div className="flex gap-2">
+
                     <button
                         onClick={() => setQuestionLanguage("english")}
-                        className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
-              ${questionLanguage === "english"
-                                ? "bg-purple-600 text-white"
-                                : "bg-purple-100 text-purple-800 hover:bg-purple-200"
-                            }`}
-                    >
-                        English
-                    </button>
-                    <button
-                        onClick={() => setQuestionLanguage("hindi")}
                         className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
               ${questionLanguage === "hindi"
                                 ? "bg-purple-600 text-white"
@@ -1946,8 +1708,8 @@ export default function SocialScienceExam() {
                 >
                     <h1 className="text-3xl font-bold mb-2 text-purple-800">
                         {questionLanguage === "hindi"
-                            ? "High School Social Science Examination 2025"
-                            : "High School Social Science Examination 2025"}
+                            ? "High School Hindi Examination 2025"
+                            : "High School Hindi Examination 2025"}
                     </h1>
                     <p className="text-purple-600">
                         {questionLanguage === "hindi"
@@ -1980,18 +1742,9 @@ export default function SocialScienceExam() {
                             {questionLanguage === "hindi" ? "Language:" : "Language:"}
                         </label>
                         <div className="flex gap-2">
+
                             <button
                                 onClick={() => setQuestionLanguage("english")}
-                                className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-                ${questionLanguage === "english"
-                                        ? "bg-purple-600 text-white"
-                                        : "bg-purple-100 text-purple-800 hover:bg-purple-200"
-                                    }`}
-                            >
-                                English
-                            </button>
-                            <button
-                                onClick={() => setQuestionLanguage("hindi")}
                                 className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
                 ${questionLanguage === "hindi"
                                         ? "bg-purple-600 text-white"
@@ -2055,8 +1808,8 @@ export default function SocialScienceExam() {
                 >
                     <h1 className="text-xl sm:text-2xl font-bold mb-2 text-purple-800 ">
                         {questionLanguage === "hindi"
-                            ? "High School Social Science Examination 2025"
-                            : "High School Social Science Examination 2025"}
+                            ? "High School Hindi Examination 2025"
+                            : "High School Hindi Examination 2025"}
                     </h1>
                     <div className="text-sm sm:text-base text-purple-800">
                         {questionLanguage === "hindi"
@@ -2387,7 +2140,7 @@ export default function SocialScienceExam() {
                                         onClick={() => {
                                             // Create the download function
                                             const downloadPDF = () => {
-                                                const pdfPath = "/10_2025_sst.pdf"
+                                                const pdfPath = "/10_2025_hindi.pdf"
 
                                                 // Create an anchor element
                                                 const link = document.createElement("a")
