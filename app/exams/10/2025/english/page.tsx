@@ -3,17 +3,17 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Clock, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Timer } from "lucide-react"
 
-export default function MathExam() {
+export default function EnglishExam() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState({})
+  const [essayAnswers, setEssayAnswers] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [showResults, setShowResults] = useState(false)
   const [isReviewing, setIsReviewing] = useState(false)
-  const [questionLanguage, setQuestionLanguage] = useState("english")
   const [examStarted, setExamStarted] = useState(false)
-  const [examDuration, setExamDuration] = useState(30) // Default 30 minutes
-  const [timeRemaining, setTimeRemaining] = useState(30 * 60) // in seconds
-  const [showSettings, setShowSettings] = useState(false)
+  const [examDuration, setExamDuration] = useState(180) // Default 180 minutes (3 hours)
+  const [timeRemaining, setTimeRemaining] = useState(180 * 60) // in seconds
+  const [showSettings, setShowSettings] = useState(true)
   const [practiceMode, setPracticeMode] = useState(false)
   const [mistakesOnly, setMistakesOnly] = useState(false)
   const [showExplanation, setShowExplanation] = useState(false)
@@ -22,764 +22,552 @@ export default function MathExam() {
   const questions = [
     {
       id: 1,
-      type: "mcq",
-      text: "Fill in the blanks:",
-      subQuestions: [
-        {
-          id: "1i",
-          text: "A polynomial of degree 3 is called a _______.",
-          options: ["cubic polynomial", "quadratic polynomial", "linear polynomial", "quartic polynomial"],
-        },
-        {
-          id: "1ii",
-          text: "√2 is a _______ number.",
-          options: ["irrational", "rational", "natural", "integer"],
-        },
-        {
-          id: "1iii",
-          text: "In the A.P.: 1, 3/2, 2, 5/2, ... the common difference d is _______.",
-          options: ["1/2", "1", "2", "3/2"],
-        },
-        {
-          id: "1iv",
-          text: "All congruent triangles are _______.",
-          options: ["similar", "equal", "different", "none of these"],
-        },
-        {
-          id: "1v",
-          text: "A line intersecting a circle in two points is called a _______.",
-          options: ["chord", "secant", "tangent", "diameter"],
-        },
-        {
-          id: "1vi",
-          text: "For any event E, P(E) + P(E') = _______.",
-          options: ["1", "0", "2", "0.5"],
-        },
-      ],
-      answers: ["cubic polynomial", "irrational", "1/2", "similar", "secant", "1"],
-      marks: 6,
-      category: "Algebra",
-      explanation:
-        "These are fundamental mathematical concepts. A polynomial of degree 3 is called cubic, √2 is irrational as it cannot be expressed as a ratio of integers, and the common difference in the given A.P. is 1/2.",
-    },
-    {
-      id: 2,
-      type: "mcq",
-      text: "True or False:",
-      subQuestions: [
-        {
-          id: "2i",
-          text: "Area of similar triangles are always equal.",
-          options: ["True", "False"],
-        },
-        {
-          id: "2ii",
-          text: "1, 2, 1, 3, ... is not an A.P.",
-          options: ["True", "False"],
-        },
-        {
-          id: "2iii",
-          text: "The distance of a point from the y-axis is called its y-coordinate.",
-          options: ["True", "False"],
-        },
-        {
-          id: "2iv",
-          text: "The volume of cone is (1/3)πr²h.",
-          options: ["True", "False"],
-        },
-        {
-          id: "2v",
-          text: "The probability of an event E is a number P(E) such that 0 ≤ P(E) ≤ 1.",
-          options: ["True", "False"],
-        },
-        {
-          id: "2vi",
-          text: "The area of minor segment is less than the area of corresponding sector.",
-          options: ["True", "False"],
-        },
-      ],
-      answers: ["False", "True", "False", "True", "True", "True"],
-      marks: 6,
-      category: "Geometry",
-      explanation:
-        "Similar triangles have the same shape but not necessarily the same size. Their areas are proportional to the square of their corresponding sides. The distance from the y-axis is the x-coordinate, not the y-coordinate.",
-    },
-    {
-      id: 3,
-      type: "mcq",
-      text: "Match the correct value:",
-      subQuestions: [
-        {
-          id: "3i",
-          text: "9sec²A - 9tan²A equals:",
-          options: ["0", "9", "1", "-9"],
-        },
-        {
-          id: "3ii",
-          text: "cos 0° equals:",
-          options: ["0", "1", "-1", "undefined"],
-        },
-        {
-          id: "3iii",
-          text: "sin 0° equals:",
-          options: ["0", "1", "-1", "undefined"],
-        },
-        {
-          id: "3iv",
-          text: "Area of sector of angle θ and radius r equals:",
-          options: ["θr²/2", "θr²/360", "(θ/360)πr²", "πr²θ"],
-        },
-        {
-          id: "3v",
-          text: "Curved surface area of hemisphere equals:",
-          options: ["2πr²", "4πr²", "πr²", "3πr²"],
-        },
-        {
-          id: "3vi",
-          text: "Total surface area of hemisphere equals:",
-          options: ["2πr²", "4πr²", "3πr²", "πr²"],
-        },
-      ],
-      answers: ["9", "1", "0", "(θ/360)πr²", "2πr²", "3πr²"],
-      marks: 6,
-      category: "Trigonometry",
-      explanation:
-        "Using the identity sec²A - tan²A = 1, we get 9sec²A - 9tan²A = 9(sec²A - tan²A) = 9(1) = 9. For trigonometric values, cos 0° = 1 and sin 0° = 0.",
-    },
-    {
-      id: 4,
-      type: "mcq",
-      text: "Write the answer in one word/sentence for each:",
-      subQuestions: [
-        {
-          id: "4i",
-          text: "Write the standard form of a quadratic equation.",
-          options: ["ax² + bx + c = 0", "ax + b = 0", "ax³ + bx² + cx + d = 0", "ax + by + c = 0"],
-        },
-        {
-          id: "4ii",
-          text: "Write any one condition of similarity of two triangles.",
-          options: ["AAA criterion", "SSS criterion", "SAS criterion", "All of the above"],
-        },
-        {
-          id: "4iii",
-          text: "Write the distance between origin (0, 0) and point (x₁, y₁).",
-          options: ["√(x₁² + y₁²)", "x₁ + y₁", "|x₁| + |y₁|", "√(|x₁| + |y₁|)"],
-        },
-        {
-          id: "4iv",
-          text: "If shadow and height of the pole are equal, then what will be the angle of the elevation of the Sun?",
-          options: ["45°", "30°", "60°", "90°"],
-        },
-        {
-          id: "4v",
-          text: "Write the formula of the length of an arc of a sector of angle θ and radius r.",
-          options: ["rθ", "2πr", "(θ/360°) × 2πr", "πrθ"],
-        },
-        {
-          id: "4vi",
-          text: "Write the class mark (middle point) of 20-40.",
-          options: ["30", "25", "20", "40"],
-        },
-      ],
-      answers: ["ax² + bx + c = 0", "AAA criterion", "√(x₁² + y₁²)", "45°", "(θ/360°) × 2πr", "30"],
-      marks: 6,
-      category: "Algebra",
-      explanation:
-        "The standard form of a quadratic equation is ax² + bx + c = 0. The distance formula from origin to a point is derived from the Pythagorean theorem.",
-    },
-    {
-      id: 5,
-      type: "mcq",
-      text: "Choose the correct option:",
-      subQuestions: [
-        {
-          id: "5i",
-          text: "H.C.F. of numbers 6 and 20 is:",
-          options: ["2", "6", "20", "1"],
-        },
-        {
-          id: "5ii",
-          text: "The quadratic equation ax² + bx + c = 0 has real and equal roots if:",
-          options: ["b² - 4ac > 0", "b² - 4ac = 0", "b² - 4ac < 0", "b² - 4ac ≠ 0"],
-        },
-        {
-          id: "5iii",
-          text: "When a₁, b₁, c₁ and a₂, b₂, c₂ are respectively, then the system of equation a₁x + b₁y + c₁ = 0 and a₂x + b₂y + c₂ = 0 has:",
-          options: ["Unique solution", "Both solutions", "No solution", "Infinitely many solutions"],
-        },
-        {
-          id: "5iv",
-          text: "10th term of an A.P.: 2, 4, 6, ... is:",
-          options: ["20", "18", "32", "22"],
-        },
-        {
-          id: "5v",
-          text: "The distance between points (2, 3) and (4, 1) is:",
-          options: ["√8", "3", "2√2", "2/3"],
-        },
-        {
-          id: "5vi",
-          text: "How many tangents can a circle have?",
-          options: ["0", "1", "2", "Infinite"],
-        },
-      ],
-      answers: ["2", "b² - 4ac = 0", "Infinitely many solutions", "20", "2√2", "Infinite"],
-      marks: 6,
-      category: "Algebra",
-      explanation:
-        "For 6 and 20, we factorize: 6 = 2×3, 20 = 2²×5. The HCF is 2. A quadratic equation has equal roots when the discriminant b² - 4ac = 0.",
-    },
-    {
-      id: 6,
-      type: "mcq",
-      text: "Solve the following pair of linear equations: x + 2y = 8, x - y = 8",
-      subQuestions: [
-        {
-          id: "6i",
-          text: "What is the value of x and y?",
-          options: ["x = 8, y = 0", "x = 0, y = 4", "x = 4, y = 2", "x = 16, y = -4"],
-        },
-      ],
-      answers: ["x = 8, y = 0"],
-      marks: 3,
-      category: "Algebra",
-      explanation:
-        "From x - y = 8, we get x = 8 + y. Substituting in x + 2y = 8, we get (8 + y) + 2y = 8, which gives 8 + 3y = 8, so 3y = 0, thus y = 0. Therefore, x = 8 + 0 = 8.",
-    },
-    {
-      id: 7,
-      type: "mcq",
-      text: "Find the 10th term of the A.P.: 2, 7, 12, ...",
-      subQuestions: [
-        {
-          id: "7i",
-          text: "The 10th term is:",
-          options: ["47", "42", "52", "57"],
-        },
-      ],
-      answers: ["47"],
-      marks: 2,
-      category: "Algebra",
-      explanation:
-        "For A.P. 2, 7, 12, the first term a = 2 and common difference d = 5. The 10th term = a + (n-1)d = 2 + 9×5 = 2 + 45 = 47",
-    },
-    {
-      id: 8,
-      type: "mcq",
-      text: "A die is thrown once. Find the probability of getting a prime number.",
-      subQuestions: [
-        {
-          id: "8i",
-          text: "The probability is:",
-          options: ["1/2", "1/3", "2/3", "1/6"],
-        },
-      ],
-      answers: ["1/2"],
-      marks: 3,
-      category: "Probability",
-      explanation:
-        "On a standard die, the prime numbers are 2, 3, and 5, which is 3 out of 6 possible outcomes. Therefore, the probability is 3/6 = 1/2.",
-    },
-    {
-      id: 9,
-      type: "mcq",
-      text: "Two concentric circles are of radii 5 cm and 3 cm. Find the length of the chord of the larger circle which touches the smaller circle.",
-      subQuestions: [
-        {
-          id: "9i",
-          text: "The length of the chord is:",
-          options: ["8 cm", "4 cm", "6 cm", "10 cm"],
-        },
-      ],
-      answers: ["8 cm"],
-      marks: 3,
-      category: "Geometry",
-      explanation:
-        "Using the Pythagorean theorem, if the chord is at a distance of 3 cm from the center, then in a circle of radius 5 cm, the length of the chord is 2√(5² - 3²) = 2√(25 - 9) = 2√16 = 2×4 = 8 cm.",
-    },
-    {
-      id: 10,
-      type: "mcq",
-      text: "The sum of first n terms of an A.P. is given by:",
-      subQuestions: [
-        {
-          id: "10i",
-          text: "Select the correct formula:",
-          options: ["n/2[2a + (n-1)d]", "n[a + (n-1)d]", "n/2[a + l]", "a + (n-1)d"],
-        },
-      ],
-      answers: ["n/2[2a + (n-1)d]"],
-      marks: 2,
-      category: "Algebra",
-      explanation:
-        "The sum of first n terms of an A.P. is given by the formula Sn = n/2[2a + (n-1)d], where a is the first term, d is the common difference, and n is the number of terms.",
-    },
-  ]
+      type: "reading",
+      text: "Read the passage carefully and answer the questions given below:",
+      passage: `Gandhiji travelled a lot. He always travelled third class in trains. He did so because all poor people in India travelled third. In those days there were three classes in trains.
+      
+Once, Gandhiji got off at Bombay (Mumbai) from a third class railway compartment. Lots of people had come to meet him. Among them were some American men and women. They went into Gandhiji's compartment. They saw that it was very small.
 
-  const questionTranslations = [
-    {
-      id: 1,
-      type: "mcq",
-      text: "Fill in the blanks:",
+"Why doesn't he travel first?" asked one of the ladies.
+
+"I don't know. Let's go and ask him," replied one of the gentlemen.
+
+"Mr. Gandhi, we've come to ask you a question." The gentleman said to Gandhiji, "you're the leader of the Indian people, but you travel third. Please tell us why you travel third?
+
+Gandhiji laughed and said, "The answer is very simple. I travel third because there is no fourth." He laughed again and the American ladies and gentlemen laughed with him.`,
       subQuestions: [
         {
           id: "1i",
-          text: "घात 3 वाले बहुपद को _______ कहा जाता है।",
-          options: ["घन बहुपद", "द्विघात बहुपद", "रैखिक बहुपद", "चतुर्थक बहुपद"],
-          answerMapping: {
-            "घन बहुपद": "cubic polynomial",
-            "द्विघात बहुपद": "quadratic polynomial",
-            "रैखिक बहुपद": "linear polynomial",
-            "चतुर्थक बहुपद": "quartic polynomial",
-          },
+          text: "In which class did Gandhiji travel in?",
+          options: ["First class", "Third class", "Second class", "All of these (a, b, c)"],
         },
         {
           id: "1ii",
-          text: "√2 एक _______ संख्या है.",
-          options: ["अपरिमेय", "तर्कसंगत", "प्राकृतिक", "पूर्णांक"],
-          answerMapping: {
-            अपरिमेय: "irrational",
-            तर्कसंगत: "rational",
-            प्राकृतिक: "natural",
-            पूर्णांक: "integer",
-          },
+          text: "Who came to meet Gandhiji at Mumbai Railway Station?",
+          options: ["One person", "Few people", "Some people", "Lots of people"],
         },
         {
           id: "1iii",
-          text: "समान्तर श्रेणी: 1, 3/2, 2, 5/2, ... में सार्व अंतर d _______ है।",
-          options: ["1/2", "1", "2", "3/2"],
-          answerMapping: {
-            "1/2": "1/2",
-            "1": "1",
-            "2": "2",
-            "3/2": "3/2",
-          },
+          text: "Which country's men and women went into Gandhiji's compartment?",
+          options: ["India", "England", "Australia", "America"],
         },
         {
           id: "1iv",
-          text: "सभी सर्वांगसम त्रिभुज ______ होते हैं.",
-          options: ["समान", "बराबर", "भिन्न", "इनमें से कोई नहीं"],
-          answerMapping: {
-            समान: "similar",
-            बराबर: "equal",
-            भिन्न: "different",
-            "इनमें से कोई नहीं": "none of these",
-          },
+          text: "Give the opposite word of poor.",
+          options: ["honest", "rich", "small", "holy"],
         },
         {
           id: "1v",
-          text: "एक वृत्त को दो बिंदुओं पर प्रतिच्छेद करने वाली रेखा को _______ कहा जाता है।",
-          options: ["जीवा", "छेदक", "स्पर्शरेखा", "व्यास"],
-          answerMapping: {
-            जीवा: "chord",
-            छेदक: "secant",
-            स्पर्शरेखा: "tangent",
-            व्यास: "diameter",
-          },
-        },
-        {
-          id: "1vi",
-          text: "किसी भी घटना E के लिए, P(E) + P(E') = _______.",
-          options: ["1", "0", "2", "0.5"],
-          answerMapping: {
-            "1": "1",
-            "0": "0",
-            "2": "2",
-            "0.5": "0.5",
-          },
+          text: "Give the synonym of word 'simple'.",
+          options: ["Smart", "difficult", "poor", "easy"],
         },
       ],
-      answers: ["घन बहुपद", "अपरिमेय", "1/2", "समान", "छेदक", "1"],
-      marks: 6,
+      answers: ["Third class", "Lots of people", "America", "rich", "easy"],
+      marks: 5,
+      category: "Reading Comprehension",
+      explanation:
+        "The passage clearly states that Gandhiji traveled in third class. Lots of people came to meet him at Mumbai station, including American men and women. The opposite of 'poor' is 'rich', and 'simple' means 'easy' or 'uncomplicated'.",
     },
     {
       id: 2,
-      type: "mcq",
-      text: "सत्य या असत्य:",
+      type: "reading",
+      text: "Read the passage carefully and answer the questions given below:",
+      passage: `In 1866, Alfred Nobel, a Swedish chemist, introduced a form of nitroglycerine that could be handled safely. He called it dynamite. In 1875, he went on to invent gelignite. These explosives were used in engineering application, but they also had an obvious military application. As a committed pacifist, Nobel hoped that his explosives would provide such a deterrent to war that they would bring peace to mankind. His inventions did not bring peace, but they did bring him a massive fortune, which he used in his will to endow the Nobel Prizes awarded to those who have conferred the greatest benefit to mankind in five categories. He left £ 32,00,000 in his will to finance prizes in physics, chemistry, physiology or medicine, literature and peace. The Bank of Sweden inaugurated a new Nobel Prize for Economics in 1969. In 1903, Marie Curie became the first woman to win the Nobel Prize, sharing it with her husband.`,
       subQuestions: [
         {
           id: "2i",
-          text: "समान त्रिभुजों का क्षेत्रफल हमेशा बराबर होता है.",
-          options: ["सत्य", "असत्य"],
-          answerMapping: {
-            सत्य: "True",
-            असत्य: "False",
-          },
+          text: "Who was Alfred Nobel?",
+          options: ["Indian Chemist", "African Chemist", "Swedish Chemist", "English Chemist"],
         },
         {
           id: "2ii",
-          text: "1, 2, 1, 3, ... A.P. नहीं है.",
-          options: ["सत्य", "असत्य"],
-          answerMapping: {
-            सत्य: "True",
-            असत्य: "False",
-          },
+          text: "What did Alfred Nobel introduce?",
+          options: ["medicine", "form of nitroglycerine", "chemistry", "gelignite"],
         },
         {
           id: "2iii",
-          text: "y-अक्ष से किसी बिंदु की दूरी को उसका y-निर्देशांक कहते हैं.",
-          options: ["सत्य", "असत्य"],
-          answerMapping: {
-            सत्य: "True",
-            असत्य: "False",
-          },
+          text: "When did the Bank of Sweden introduce a new Nobel Prize in Economics?",
+          options: ["1866", "1875", "1903", "1969"],
         },
         {
           id: "2iv",
-          text: "शंकु का आयतन (1/3)πr²h है.",
-          options: ["सत्य", "असत्य"],
-          answerMapping: {
-            सत्य: "True",
-            असत्य: "False",
-          },
+          text: "Why did Alfred leave £ 32,00,000 in his will?",
+          options: [
+            "to finance prize in physics",
+            "to finance prize in chemistry",
+            "to finance prize in literature and peace",
+            "All of the above",
+          ],
         },
         {
           id: "2v",
-          text: "घटना E की प्रायिकता एक संख्या P(E) है, जैसे कि 0 ≤ P(E) ≤ 1.",
-          options: ["सत्य", "असत्य"],
-          answerMapping: {
-            सत्य: "True",
-            असत्य: "False",
-          },
-        },
-        {
-          id: "2vi",
-          text: "लघु खंड का क्षेत्रफल संगत क्षेत्र के क्षेत्रफल से कम है.",
-          options: ["सत्य", "असत्य"],
-          answerMapping: {
-            सत्य: "True",
-            असत्य: "False",
-          },
+          text: "Who was the first woman to win the Nobel Prize?",
+          options: ["Marie Curie", "Mother Teresa", "Kalpana Chawla", "Indira Gandhi"],
         },
       ],
-      answers: ["असत्य", "सत्य", "असत्य", "सत्य", "सत्य", "सत्य"],
-      marks: 6,
+      answers: ["Swedish Chemist", "form of nitroglycerine", "1969", "All of the above", "Marie Curie"],
+      marks: 5,
+      category: "Reading Comprehension",
+      explanation:
+        "Alfred Nobel was a Swedish chemist who introduced a form of nitroglycerine called dynamite. The Bank of Sweden introduced the Economics prize in 1969. He left money to finance prizes in multiple categories, and Marie Curie was the first woman to win the Nobel Prize in 1903.",
     },
     {
       id: 3,
-      type: "mcq",
-      text: "सही मान से मिलान करें:",
-      subQuestions: [
-        {
-          id: "3i",
-          text: "9sec²A - 9tan²A बराबर है:",
-          options: ["0", "9", "1", "-9"],
-          answerMapping: {
-            "0": "0",
-            "9": "9",
-            "1": "1",
-            "-9": "-9",
-          },
-        },
-        {
-          id: "3ii",
-          text: "cos 0° बराबर है:",
-          options: ["0", "1", "-1", "undefined"],
-          answerMapping: {
-            "0": "0",
-            "1": "1",
-            "-1": "-1",
-            undefined: "undefined",
-          },
-        },
-        {
-          id: "3iii",
-          text: "sin 0° बराबर है:",
-          options: ["0", "1", "-1", "undefined"],
-          answerMapping: {
-            "0": "0",
-            "1": "1",
-            "-1": "-1",
-            undefined: "undefined",
-          },
-        },
-        {
-          id: "3iv",
-          text: "कोण θ और त्रिज्या r के क्षेत्र का क्षेत्रफल बराबर है:",
-          options: ["θr²/2", "θr²/360", "(θ/360)πr²", "πr²θ"],
-          answerMapping: {
-            "θr²/2": "θr²/2",
-            "θr²/360": "θr²/360",
-            "(θ/360)πr²": "(θ/360)πr²",
-            "πr²θ": "πr²θ",
-          },
-        },
-        {
-          id: "3v",
-          text: "गोलार्ध का वक्र पृष्ठीय क्षेत्रफल बराबर है:",
-          options: ["2πr²", "4πr²", "πr²", "3πr²"],
-          answerMapping: {
-            "2πr²": "2πr²",
-            "4πr²": "4πr²",
-            "πr²": "πr²",
-            "3πr²": "3πr²",
-          },
-        },
-        {
-          id: "3vi",
-          text: "गोलार्ध का कुल पृष्ठीय क्षेत्रफल बराबर है:",
-          options: ["2πr²", "4πr²", "3πr²", "πr²"],
-          answerMapping: {
-            "2πr²": "2πr²",
-            "4πr²": "4πr²",
-            "3πr²": "3πr²",
-            "πr²": "πr²",
-          },
-        },
-      ],
-      answers: ["9", "1", "0", "(θ/360)πr²", "2πr²", "3πr²"],
-      marks: 6,
+      type: "writing",
+      text: "Write a letter to your friend to invite him to attend your birthday party.",
+      marks: 4,
+      category: "Letter Writing",
+      explanation:
+        "A good letter should include a proper salutation, introduction, body with details about the birthday party (date, time, venue), and a closing. The tone should be friendly and informal as it's to a friend.",
+      minWords: 100,
+      maxWords: 150,
     },
     {
       id: 4,
-      type: "mcq",
-      text: "प्रत्येक के लिए एक शब्द/वाक्य में उत्तर लिखें:",
-      subQuestions: [
-        {
-          id: "4i",
-          text: "द्विघात समीकरण का मानक रूप लिखें।",
-          options: ["ax² + bx + c = 0", "ax + b = 0", "ax³ + bx² + cx + d = 0", "ax + by + c = 0"],
-          answerMapping: {
-            "ax² + bx + c = 0": "ax² + bx + c = 0",
-            "ax + b = 0": "ax + b = 0",
-            "ax³ + bx² + cx + d = 0": "ax³ + bx² + cx + d = 0",
-            "ax + by + c = 0": "ax + by + c = 0",
-          },
-        },
-        {
-          id: "4ii",
-          text: "दो त्रिभुजों की समानता की कोई एक शर्त लिखें।",
-          options: ["AAA मानदंड", "SSS मानदंड", "SAS मानदंड", "उपर्युक्त सभी"],
-          answerMapping: {
-            "AAA मानदंड": "AAA criterion",
-            "SSS मानदंड": "SSS criterion",
-            "SAS मानदंड": "SAS criterion",
-            "उपर्युक्त सभी": "All of the above",
-          },
-        },
-        {
-          id: "4iii",
-          text: "मूल बिंदु (0, 0) और बिंदु (x₁, y₁) के बीच की दूरी लिखें।",
-          options: ["√(x₁² + y₁²)", "x₁ + y₁", "|x₁| + |y₁|", "√(|x₁| + |y₁|)"],
-          answerMapping: {
-            "√(x₁² + y₁²)": "√(x₁² + y₁²)",
-            "x₁ + y₁": "x₁ + y₁",
-            "|x₁| + |y₁|": "|x₁| + |y₁|",
-            "√(|x₁| + |y₁|)": "√(|x₁| + |y₁|)",
-          },
-        },
-        {
-          id: "4iv",
-          text: "यदि छाया और ध्रुव की ऊँचाई बराबर हो, तो सूर्य का उन्नयन कोण क्या होगा?",
-          options: ["45°", "30°", "60°", "90°"],
-          answerMapping: {
-            "45°": "45°",
-            "30°": "30°",
-            "60°": "60°",
-            "90°": "90°",
-          },
-        },
-        {
-          id: "4v",
-          text: "कोण θ और त्रिज्या r वाले एक त्रिज्यखंड के चाप की लंबाई का सूत्र लिखें।",
-          options: ["rθ", "2πr", "(θ/360°) × 2πr", "πrθ"],
-          answerMapping: {
-            rθ: "rθ",
-            "2πr": "2πr",
-            "(θ/360°) × 2πr": "(θ/360°) × 2πr",
-            πrθ: "πrθ",
-          },
-        },
-        {
-          id: "4vi",
-          text: "20-40 का वर्ग चिह्न (मध्य बिंदु) लिखें।",
-          options: ["30", "25", "20", "40"],
-          answerMapping: {
-            "30": "30",
-            "25": "25",
-            "20": "20",
-            "40": "40",
-          },
-        },
-      ],
-      answers: ["ax² + bx + c = 0", "AAA मानदंड", "√(x₁² + y₁²)", "45°", "(θ/360°) × 2πr", "30"],
-      marks: 6,
+      type: "writing",
+      text: "You are Manthan/Mahi studying in Govt. H.S. School Bajrang Nagar, Indore. Write an application to your principal requesting him to issue you your School Leaving Certificate (S.L.C).",
+      marks: 4,
+      category: "Application Writing",
+      explanation:
+        "A formal application should include your details (name, class, roll number), proper salutation, a clear request stating the purpose, necessary details, and a formal closing with date and signature.",
+      minWords: 100,
+      maxWords: 150,
     },
     {
       id: 5,
-      type: "mcq",
-      text: "सही विकल्प चुनें:",
+      type: "note-making",
+      text: "Read the passage carefully and answer the questions given below it.",
+      passage: `Students who are very fond of reading books are often labelled by their companions as bookworms. Their criticism generally comes from students who consider themselves better in sports. Students who shine in athletics or in games consider that it is better to spend time and energy in a sports arena than in a classroom or at the reading desk. All the same they do envy their fellows who shine academically. Academic honour has a glamour which is unique. It is not to be denied that playing games is useful activity, because it creates team spirit and also makes the sportsmen healthy and vigorous. That is why games and sports are given so much importance in the curriculum of schools and colleges. But studies should not be neglected and should be given due importance along with other activities connected with education. Let each type of activity have its own place in our daily routine. Then only will we have students both academically sound and physically fit. We want our educational system to generate this synergy among our youth.`,
       subQuestions: [
         {
           id: "5i",
-          text: "H.C.F. संख्या 6 और 20 का मान है:",
-          options: ["2", "6", "20", "1"],
-          answerMapping: {
-            "2": "2",
-            "6": "6",
-            "20": "20",
-            "1": "1",
-          },
+          text: "On the basis of your reading of the above passage, make notes on it.",
+          marks: 3,
         },
         {
           id: "5ii",
-          text: "द्विघात समीकरण ax² + bx + c = 0 के वास्तविक और समान मूल हैं यदि:",
-          options: ["b² - 4ac > 0", "b² - 4ac = 0", "b² - 4ac < 0", "b² - 4ac ≠ 0"],
-          answerMapping: {
-            "b² - 4ac > 0": "b² - 4ac > 0",
-            "b² - 4ac = 0": "b² - 4ac = 0",
-            "b² - 4ac < 0": "b² - 4ac < 0",
-            "b² - 4ac ≠ 0": "b² - 4ac ≠ 0",
-          },
-        },
-        {
-          id: "5iii",
-          text: "जब a₁, b₁, c₁ और a₂, b₂, c₂ क्रमशः हों, तो समीकरण a₁x + b₁y + c₁ = 0 और a₂x + b₂y + c₂ = 0 की प्रणाली में है:",
-          options: ["अद्वितीय समाधान", "दोनों समाधान", "कोई समाधान नहीं", "अनंत समाधान"],
-          answerMapping: {
-            "अद्वितीय समाधान": "Unique solution",
-            "दोनों समाधान": "Both solutions",
-            "कोई समाधान नहीं": "No solution",
-            "अनंत समाधान": "Infinitely many solutions",
-          },
-        },
-        {
-          id: "5iv",
-          text: "एक समांतर श्रेणी: 2, 4, 6, ... का 10वाँ पद है:",
-          options: ["20", "18", "32", "22"],
-          answerMapping: {
-            "20": "20",
-            "18": "18",
-            "32": "32",
-            "22": "22",
-          },
-        },
-        {
-          id: "5v",
-          text: "बिंदुओं (2, 3) और (4, 1) के बीच की दूरी है:",
-          options: ["√8", "3", "2√2", "2/3"],
-          answerMapping: {
-            "√8": "√8",
-            "3": "3",
-            "2√2": "2√2",
-            "2/3": "2/3",
-          },
-        },
-        {
-          id: "5vi",
-          text: "एक वृत्त में कितनी स्पर्श रेखाएँ हो सकती हैं?",
-          options: ["0", "1", "2", "अनंत"],
-          answerMapping: {
-            "0": "0",
-            "1": "1",
-            "2": "2",
-            अनंत: "Infinite",
-          },
+          text: "Give a suitable title to it.",
+          marks: 1,
         },
       ],
-      answers: ["2", "b² - 4ac = 0", "अनंत समाधान", "20", "2√2", "अनंत"],
-      marks: 6,
+      category: "Note Making",
+      explanation:
+        "Good notes should capture the main points of the passage in a concise format using abbreviations, symbols, and indentation. A suitable title might be 'Balance between Academics and Sports' or 'Holistic Education'.",
+      minWords: 50,
+      maxWords: 100,
     },
     {
       id: 6,
-      type: "mcq",
-      text: "निम्न रैखिक समीकरणों के युग्म को हल करें: x + 2y = 8, x - y = 8",
-      subQuestions: [
-        {
-          id: "6i",
-          text: "x और y का मान क्या है?",
-          options: ["x = 8, y = 0", "x = 0, y = 4", "x = 4, y = 2", "x = 16, y = -4"],
-          answerMapping: {
-            "x = 8, y = 0": "x = 8, y = 0",
-            "x = 0, y = 4": "x = 0, y = 4",
-            "x = 4, y = 2": "x = 4, y = 2",
-            "x = 16, y = -4": "x = 16, y = -4",
-          },
-        },
-      ],
-      answers: ["x = 8, y = 0"],
-      marks: 3,
+      type: "paragraph",
+      text: "Look at the visual input given below and produce a small paragraph in about 75 words.",
+      image: "/placeholder.svg?height=200&width=300",
+      imageAlt: "A school building with children playing in the playground",
+      marks: 4,
+      category: "Paragraph Writing",
+      explanation:
+        "A good paragraph should describe the image accurately, be coherent, and stay within the word limit. It should have a clear topic sentence and supporting details.",
+      minWords: 70,
+      maxWords: 80,
     },
     {
       id: 7,
-      type: "mcq",
-      text: "... का 10वाँ पद ज्ञात करें A.P.: 2, 7, 12, ...",
-      subQuestions: [
-        {
-          id: "7i",
-          text: "दसवाँ पद है:",
-          options: ["47", "42", "52", "57"],
-          answerMapping: {
-            "47": "47",
-            "42": "42",
-            "52": "52",
-            "57": "57",
-          },
-        },
-      ],
-      answers: ["47"],
-      marks: 2,
+      type: "essay",
+      text: "Write an essay in about 150 words on any one of the following topics:",
+      options: ["Importance of Games and Sports", "Any Festival", "Save tree", "Science in daily life", "My hobby"],
+      marks: 5,
+      category: "Essay Writing",
+      explanation:
+        "A good essay should have a clear introduction, body, and conclusion. It should be well-structured, coherent, and stay within the word limit.",
+      minWords: 140,
+      maxWords: 160,
     },
     {
       id: 8,
-      type: "mcq",
-      text: "एक पासा एक बार फेंका जाता है। अभाज्य संख्या प्राप्त करने की प्रायिकता ज्ञात कीजिए।",
+      type: "grammar",
+      text: "Do as directed:",
       subQuestions: [
         {
           id: "8i",
-          text: "संभावना है:",
-          options: ["1/2", "1/3", "2/3", "1/6"],
-          answerMapping: {
-            "1/2": "1/2",
-            "1/3": "1/3",
-            "2/3": "2/3",
-            "1/6": "1/6",
-          },
+          text: "Kshitij plays cricket. (Change into past indefinite tense)",
+          options: [
+            "Kshitij played cricket.",
+            "Kshitij was playing cricket.",
+            "Kshitij has played cricket.",
+            "Kshitij had played cricket.",
+          ],
+        },
+        {
+          id: "8ii",
+          text: "Ram killed Ravan. (Change the voice)",
+          options: [
+            "Ravan killed Ram.",
+            "Ravan was killed by Ram.",
+            "Ravan has been killed by Ram.",
+            "Ravan is killed by Ram.",
+          ],
+        },
+        {
+          id: "8iii",
+          text: "have/they/a/new/car/bought (Rearrange the words to make a meaningful sentence)",
+          options: [
+            "They have bought a new car.",
+            "Have they bought a new car?",
+            "A new car they have bought.",
+            "Bought they have a new car.",
+          ],
+        },
+        {
+          id: "8iv",
+          text: "Talk properly. I shall beat you. (Combine the sentences using 'otherwise')",
+          options: [
+            "Talk properly otherwise I shall beat you.",
+            "I shall beat you otherwise talk properly.",
+            "Otherwise talk properly I shall beat you.",
+            "Talk properly I shall beat you otherwise.",
+          ],
+        },
+        {
+          id: "8v",
+          text: "To find error in others is easy. (Rewrite the sentence beginning with 'It')",
+          options: [
+            "It is easy to find error in others.",
+            "It is to find error in others easy.",
+            "It to find error in others is easy.",
+            "It easy is to find error in others.",
+          ],
+        },
+        {
+          id: "8vi",
+          text: "Shiba cooked food. (Change into negative sentence)",
+          options: [
+            "Shiba did not cook food.",
+            "Shiba does not cook food.",
+            "Shiba has not cooked food.",
+            "Shiba is not cooking food.",
+          ],
+        },
+        {
+          id: "8vii",
+          text: "The box is very heavy. I can not lift it. (Combine the sentences using 'so...that')",
+          options: [
+            "The box is so heavy that I can not lift it.",
+            "The box is very heavy so that I can not lift it.",
+            "So heavy is the box that I can not lift it.",
+            "The box is heavy so I can not lift it.",
+          ],
         },
       ],
-      answers: ["1/2"],
-      marks: 3,
+      answers: [
+        "Kshitij played cricket.",
+        "Ravan was killed by Ram.",
+        "They have bought a new car.",
+        "Talk properly otherwise I shall beat you.",
+        "It is easy to find error in others.",
+        "Shiba did not cook food.",
+        "The box is so heavy that I can not lift it.",
+      ],
+      marks: 5,
+      category: "Grammar",
+      explanation:
+        "These questions test various grammar concepts including tense changes, active-passive voice, sentence rearrangement, and sentence combining using conjunctions.",
     },
     {
       id: 9,
-      type: "mcq",
-      text: "दो संकेन्द्रीय वृत्तों की त्रिज्याएँ 5 सेमी और 3 सेमी हैं। बड़े वृत्त की जीवा की लंबाई ज्ञात कीजिए जो छोटे वृत्त को स्पर्श करती है।",
+      type: "fill-in-blanks",
+      text: "Fill in the blanks:",
       subQuestions: [
         {
           id: "9i",
-          text: "जीवा की लंबाई है:",
-          options: ["8 सेमी", "4 सेमी", "6 सेमी", "10 सेमी"],
-          answerMapping: {
-            "8 सेमी": "8 cm",
-            "4 सेमी": "4 cm",
-            "6 सेमी": "6 cm",
-            "10 सेमी": "10 cm",
-          },
+          text: "My uncle is _____ M. L. A.",
+          options: ["a", "an", "the"],
+        },
+        {
+          id: "9ii",
+          text: "You _____ sit here.",
+          options: ["dare", "may", "should"],
+        },
+        {
+          id: "9iii",
+          text: "_____ dog seldom bite.",
+          options: ["Barking", "Barks", "Bark"],
+        },
+        {
+          id: "9iv",
+          text: "_____ there is life, there is hope.",
+          options: ["If", "Unless", "As long as"],
+        },
+        {
+          id: "9v",
+          text: "Hema has been dancing _____ morning.",
+          options: ["for", "since", "from"],
+        },
+        {
+          id: "9vi",
+          text: "The servant didn't make _____ tea.",
+          options: ["many", "much", "a little"],
+        },
+        {
+          id: "9vii",
+          text: "Mohan is sitting _____ Ram and Shyam.",
+          options: ["between", "among", "against"],
         },
       ],
-      answers: ["8 सेमी"],
-      marks: 3,
+      answers: ["an", "may", "Barking", "As long as", "since", "much", "between"],
+      marks: 5,
+      category: "Grammar",
+      explanation:
+        "These questions test knowledge of articles, modal verbs, subject-verb agreement, conjunctions, prepositions, and quantifiers.",
     },
     {
       id: 10,
-      type: "mcq",
-      text: "एक समांतर श्रेणी के प्रथम n पदों का योग निम्न प्रकार दिया जाता है:",
+      type: "literature",
+      text: "Read the extract carefully and answer the questions:",
+      passage: `Early in the New Year of 1956 I travelled to southern Iraq. By then it had crossed my mind that I should like to keep an otter instead of a dog, and that Camusfearna, ringed by water a stone's throw from its door, would be an eminently suitable spot for this experiment.
+
+When I casually mentioned this to a friend, he as casually replied that I had better get one in the Tigris marshes, for there they were as common as mosquitoes, and were often tamed by the Arabs. We were going to Basra to the Consulate-General to collect and answer our mail from Europe. At the Consulate-General we found that my friend's mail had arrived but that mine had not.`,
       subQuestions: [
         {
           id: "10i",
-          text: "सही सूत्र चुनें:",
-          options: ["n/2[2a + (n-1)d]", "n[a + (n-1)d]", "n/2[a + l]", "a + (n-1)d"],
-          answerMapping: {
-            "n/2[2a + (n-1)d]": "n/2[2a + (n-1)d]",
-            "n[a + (n-1)d]": "n[a + (n-1)d]",
-            "n/2[a + l]": "n/2[a + l]",
-            "a + (n-1)d": "a + (n-1)d",
-          },
+          text: "When did the author travel?",
+          options: ["1947", "1956", "1971", "1999"],
+        },
+        {
+          id: "10ii",
+          text: "The author travelled to",
+          options: ["U.S.A.", "Iraq", "Australia", "Japan"],
+        },
+        {
+          id: "10iii",
+          text: "The author wanted to keep an otter instead of a",
+          options: ["dog", "cat", "monkey", "cow"],
         },
       ],
-      answers: ["n/2[2a + (n-1)d]"],
-      marks: 2,
+      answers: ["1956", "Iraq", "dog"],
+      marks: 3,
+      category: "Literature",
+      explanation:
+        "The passage clearly states that the author traveled to southern Iraq in 1956 and wanted to keep an otter instead of a dog.",
+    },
+    {
+      id: 11,
+      type: "literature",
+      text: "Read the extract below carefully and answer the questions:",
+      passage: `Belinda tickled him, she tickled him unmerciful.
+Ink, Blink and Mustard, they rudely called him Percival,
+They all sat laughing in the little red wagon
+At the realio, trulio cowardly dragon.`,
+      subQuestions: [
+        {
+          id: "11i",
+          text: "Who is the poet of the above extract?",
+          options: ["Robert Frost", "Ogden Nash", "Carl Sandburg", "Robin Klein"],
+        },
+        {
+          id: "11ii",
+          text: "Whom did Belinda tickle?",
+          options: ["Ink", "Blink", "Mustard", "Custard"],
+        },
+        {
+          id: "11iii",
+          text: "They all sat _____ in the little red wagon.",
+          options: ["playing", "laughing", "talking", "studying"],
+        },
+      ],
+      answers: ["Ogden Nash", "Custard", "laughing"],
+      marks: 3,
+      category: "Literature",
+      explanation:
+        "This extract is from 'The Tale of Custard the Dragon' by Ogden Nash. Belinda tickled Custard (the dragon), and they all sat laughing in the little red wagon.",
+    },
+    {
+      id: 12,
+      type: "mcq",
+      text: "Choose the correct answer:",
+      subQuestions: [
+        {
+          id: "12i",
+          text: "Who was Lencho?",
+          options: ["Peasant", "Postman", "Postmaster", "Doctor"],
+        },
+        {
+          id: "12ii",
+          text: "Monthly accounts of the baker were recorded on",
+          options: ["a note book", "the main door of the house", "Some wall in pencil", "the floor"],
+        },
+        {
+          id: "12iii",
+          text: "10 May in South Africa is",
+          options: ["Summer day", "Autumn day", "Winter day", "Rainy day"],
+        },
+        {
+          id: "12iv",
+          text: "The main crop of Coorg is",
+          options: ["tea", "coffee", "banana", "wheat"],
+        },
+      ],
+      answers: ["Peasant", "the main door of the house", "Autumn day", "coffee"],
+      marks: 4,
+      category: "Literature",
+      explanation:
+        "Lencho was a peasant in the story 'A Letter to God'. The baker's accounts were recorded on the main door. May 10 is autumn in South Africa (southern hemisphere). Coffee is the main crop of Coorg.",
+    },
+    {
+      id: 13,
+      type: "short-answer",
+      text: "Answer the questions in about 30 words:",
+      subQuestions: [
+        {
+          id: "13i",
+          text: "What did Lencho hope for?",
+        },
+        {
+          id: "13ii",
+          text: "Where did the ceremonies take place? Can you name any public building in India that are made of sandstone?",
+        },
+        {
+          id: "13iii",
+          text: "What made the woman in the control centre look at the narrator strangely?",
+        },
+        {
+          id: "13iv",
+          text: "Anne says teachers are most unpredictable? Is Mr. Keesing unpredictable? How?",
+        },
+        {
+          id: "13v",
+          text: "What does a 'jackfruit-like' appearance mean?",
+        },
+        {
+          id: "13vi",
+          text: "Why does Valli stand up on the seat? What does she see now?",
+        },
+        {
+          id: "13vii",
+          text: "What did the Buddha do after he had attained enlightenment?",
+        },
+        {
+          id: "13viii",
+          text: "What compelled the young seagull to take his first flight?",
+        },
+      ],
+      marks: 12,
+      category: "Literature",
+      explanation:
+        "These questions require brief answers based on the literature texts studied. Good answers should be concise, to the point, and within the word limit.",
+      minWords: 25,
+      maxWords: 35,
+    },
+    {
+      id: 14,
+      type: "short-answer",
+      text: "Answer the following questions in about 30 words:",
+      subQuestions: [
+        {
+          id: "14i",
+          text: "What does 'Fire and Ice' stand for in the poem?",
+        },
+        {
+          id: "14ii",
+          text: "How does the poet suggest that you identify the lion and tiger? When can you do so, according to him?",
+        },
+      ],
+      marks: 4,
+      category: "Poetry",
+      explanation:
+        "These questions require brief answers based on the poetry texts studied. Good answers should be concise, to the point, and within the word limit.",
+      minWords: 25,
+      maxWords: 35,
+    },
+    {
+      id: 15,
+      type: "short-answer",
+      text: "Answer the following questions in about 30 words:",
+      subQuestions: [
+        {
+          id: "15i",
+          text: "Why does Mrs. Pumphrey think the dog's recovery is a triumph of surgery?",
+        },
+        {
+          id: "15ii",
+          text: "Who was Fowler? Why did he want to meet Ausable?",
+        },
+        {
+          id: "15iii",
+          text: "Is Amanda an orphan? Why does she say so?",
+        },
+      ],
+      marks: 4,
+      category: "Literature",
+      explanation:
+        "These questions require brief answers based on the literature texts studied. Good answers should be concise, to the point, and within the word limit.",
+      minWords: 25,
+      maxWords: 35,
+    },
+    {
+      id: 16,
+      type: "long-answer",
+      text: "Answer the questions in about 75 words:",
+      subQuestions: [
+        {
+          id: "16i",
+          text: "How did Mandela's hunger for freedom change his life?",
+        },
+        {
+          id: "16ii",
+          text: "Why does Lomove think he should get married?",
+        },
+      ],
+      marks: 3,
+      category: "Literature",
+      explanation:
+        "These questions require detailed answers based on the literature texts studied. Good answers should be well-structured, coherent, and within the word limit.",
+      minWords: 70,
+      maxWords: 80,
+    },
+    {
+      id: 17,
+      type: "long-answer",
+      text: "Answer the questions in about 75 words:",
+      subQuestions: [
+        {
+          id: "17i",
+          text: "Write the central idea of the poem 'How to tell wild animal?'",
+        },
+        {
+          id: "17ii",
+          text: "What does the young boy say to Anne Gregory?",
+        },
+      ],
+      marks: 3,
+      category: "Poetry",
+      explanation:
+        "These questions require detailed answers based on the poetry texts studied. Good answers should be well-structured, coherent, and within the word limit.",
+      minWords: 70,
+      maxWords: 80,
+    },
+    {
+      id: 18,
+      type: "long-answer",
+      text: "Answer the following questions in about 75 words:",
+      subQuestions: [
+        {
+          id: "18i",
+          text: "What was the cause of Matilda's ruin? How could she have avoided it?",
+        },
+        {
+          id: "18ii",
+          text: "Why does the marriage not take place?",
+        },
+        {
+          id: "18iii",
+          text: "Why was the invisible man wandering the street?",
+        },
+      ],
+      marks: 3,
+      category: "Literature",
+      explanation:
+        "These questions require detailed answers based on the literature texts studied. Good answers should be well-structured, coherent, and within the word limit.",
+      minWords: 70,
+      maxWords: 80,
     },
   ]
 
@@ -788,6 +576,13 @@ export default function MathExam() {
   const handleInputChange = (questionId, subQuestionId, value) => {
     setAnswers({
       ...answers,
+      [questionId + (subQuestionId ? "-" + subQuestionId : "")]: value,
+    })
+  }
+
+  const handleEssayChange = (questionId, subQuestionId, value) => {
+    setEssayAnswers({
+      ...essayAnswers,
       [questionId + (subQuestionId ? "-" + subQuestionId : "")]: value,
     })
   }
@@ -825,32 +620,31 @@ export default function MathExam() {
 
       totalMarks += q.marks || 0
 
-      if (q.type === "mcq" && Array.isArray(q.subQuestions) && Array.isArray(q.answers)) {
-        q.subQuestions.forEach((sq, index) => {
-          if (!sq) return
+      if (
+        q.type === "mcq" ||
+        q.type === "reading" ||
+        q.type === "grammar" ||
+        q.type === "fill-in-blanks" ||
+        q.type === "literature"
+      ) {
+        if (Array.isArray(q.subQuestions) && Array.isArray(q.answers)) {
+          q.subQuestions.forEach((sq, index) => {
+            if (!sq) return
 
-          const userAnswer = answers[q.id + "-" + sq.id] || ""
+            const userAnswer = answers[q.id + "-" + sq.id] || ""
+            const correctAnswer = q.answers[index]
 
-          // Get the correct answer based on the language
-          let correctAnswer
-          if (questionLanguage === "english") {
-            correctAnswer = q.answers[index]
-          } else {
-            // For Hindi, we need to get the corresponding translation
-            const translatedQuestion = questionTranslations.find((tq) => tq.id === q.id)
-            if (translatedQuestion && Array.isArray(translatedQuestion.answers)) {
-              correctAnswer = translatedQuestion.answers[index]
+            if (correctAnswer && userAnswer === correctAnswer) {
+              score += q.marks / q.subQuestions.length
+              correctAnswers++
+            } else if (userAnswer) {
+              incorrectAnswers++
             }
-          }
-
-          if (correctAnswer && userAnswer === correctAnswer) {
-            score += q.marks / q.subQuestions.length
-            correctAnswers++
-          } else if (userAnswer) {
-            incorrectAnswers++
-          }
-        })
+          })
+        }
       }
+      // For essay, writing, and other subjective questions, we can't automatically score
+      // In a real application, these would be manually graded
     })
 
     return { score, totalMarks, correctAnswers, incorrectAnswers }
@@ -863,39 +657,28 @@ export default function MathExam() {
     const subQuestionIndex = question.subQuestions.findIndex((sq) => sq.id === subQuestionId)
     if (subQuestionIndex === -1) return false
 
-    // Get the correct answer based on the language
-    let correctAnswer
-    if (questionLanguage === "english") {
-      correctAnswer = question.answers[subQuestionIndex]
-    } else {
-      // For Hindi, we need to get the corresponding translation
-      const translatedQuestion = questionTranslations.find((tq) => tq.id === questionId)
-      if (translatedQuestion && Array.isArray(translatedQuestion.answers)) {
-        correctAnswer = translatedQuestion.answers[subQuestionIndex]
-      }
-    }
-
+    const correctAnswer = question.answers[subQuestionIndex]
     return answer === correctAnswer
   }
 
-  // This function maps Hindi answers to English for comparison
-  const mapAnswerToEnglish = (questionId, subQuestionId, hindiAnswer) => {
-    if (questionLanguage === "english") return hindiAnswer // No mapping needed
-
-    const translatedQuestion = questionTranslations.find((tq) => tq.id === questionId)
-    if (!translatedQuestion) return hindiAnswer
-
-    const subQuestion = translatedQuestion.subQuestions.find((sq) => sq.id === subQuestionId)
-    if (!subQuestion || !subQuestion.answerMapping) return hindiAnswer
-
-    return subQuestion.answerMapping[hindiAnswer] || hindiAnswer
+  const countWords = (text) => {
+    return text.trim().split(/\s+/).filter(Boolean).length
   }
 
   const renderQuestion = (question) => {
     if (!question) return <div>Question not found</div>
 
     // If in practice mode with mistakes only, skip questions that were answered correctly
-    if (practiceMode && mistakesOnly && submitted) {
+    if (
+      practiceMode &&
+      mistakesOnly &&
+      submitted &&
+      (question.type === "mcq" ||
+        question.type === "reading" ||
+        question.type === "grammar" ||
+        question.type === "fill-in-blanks" ||
+        question.type === "literature")
+    ) {
       const allSubQuestionsCorrect = question.subQuestions.every((sq) => {
         const userAnswer = answers[`${question.id}-${sq.id}`]
         return isAnswerCorrect(question.id, sq.id, userAnswer)
@@ -903,77 +686,204 @@ export default function MathExam() {
       if (allSubQuestionsCorrect) return null
     }
 
-    const currentTranslation = questionLanguage === "hindi" ? questionTranslations[question.id - 1] : null
-
     return (
       <motion.div
-        key={`${question.id}-${questionLanguage}`}
+        key={question.id}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
-        className="p-6 bg-white rounded-lg shadow-lg"
+        className="p-4 sm:p-6 bg-white rounded-lg shadow-lg"
       >
-        <h3 className="font-semibold mb-4 text-purple-800">
-          {currentTranslation ? currentTranslation.text : question.text}
-        </h3>
-        {Array.isArray(question.subQuestions) &&
+        <h3 className="font-semibold mb-4 text-purple-800">{question.text}</h3>
+
+        {/* Render passage for reading comprehension */}
+        {(question.type === "reading" || question.type === "literature" || question.type === "note-making") &&
+          question.passage && (
+            <div className="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-100 whitespace-pre-line">
+              {question.passage}
+            </div>
+          )}
+
+        {/* Render image for paragraph writing */}
+        {question.type === "paragraph" && question.image && (
+          <div className="mb-6 flex justify-center">
+            <img
+              src={question.image || "/placeholder.svg"}
+              alt={question.imageAlt}
+              className="max-w-full h-auto rounded-lg"
+            />
+          </div>
+        )}
+
+        {/* Render MCQ type questions */}
+        {(question.type === "mcq" ||
+          question.type === "reading" ||
+          question.type === "grammar" ||
+          question.type === "fill-in-blanks" ||
+          question.type === "literature") &&
+          Array.isArray(question.subQuestions) &&
           question.subQuestions.map((sq, index) => {
-            const translatedSubQuestion = currentTranslation?.subQuestions?.[index]
-            const options = translatedSubQuestion ? translatedSubQuestion.options : sq.options
             const userAnswer = answers[`${question.id}-${sq.id}`]
 
             return (
               <motion.div
-                key={`${sq.id}-${questionLanguage}`}
+                key={sq.id}
                 className="mb-5"
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
               >
                 <div className="mb-2 text-purple-700 font-medium">
-                  {index + 1}. {translatedSubQuestion ? translatedSubQuestion.text : sq.text}
+                  {index + 1}. {sq.text}
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {options.map((option, optIndex) => {
-                    const isSelected = userAnswer === option
-                    const isCorrect = submitted && isAnswerCorrect(question.id, sq.id, option)
+                {sq.options && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {sq.options.map((option, optIndex) => {
+                      const isSelected = userAnswer === option
+                      const isCorrect = submitted && isAnswerCorrect(question.id, sq.id, option)
 
-                    return (
-                      <label
-                        key={`${optIndex}-${questionLanguage}`}
-                        className={`
-                        flex items-center p-2 sm:p-3 rounded-md cursor-pointer
-                        border-2 transition-all duration-200 mb-2
-                        ${submitted
-                            ? isCorrect
-                              ? "bg-green-50 border-green-500"
+                      return (
+                        <label
+                          key={optIndex}
+                          className={`
+                          flex items-center p-2 sm:p-3 rounded-md cursor-pointer
+                          border-2 transition-all duration-200 mb-2
+                          ${submitted
+                              ? isCorrect
+                                ? "bg-green-50 border-green-500"
+                                : isSelected
+                                  ? "bg-red-50 border-red-500"
+                                  : "border-purple-100"
                               : isSelected
-                                ? "bg-red-50 border-red-500"
-                                : "border-purple-100"
-                            : isSelected
-                              ? "bg-purple-50 border-purple-500"
-                              : "border-purple-100 hover:border-purple-300"
-                          }
-                      `}
-                      >
-                        <input
-                          type="radio"
-                          name={`${question.id}-${sq.id}`}
-                          value={option}
-                          checked={isSelected}
-                          onChange={() => handleInputChange(question.id, sq.id, option)}
-                          disabled={submitted && !practiceMode}
-                          className="mr-2 text-purple-600 focus:ring-purple-500"
-                        />
-                        <span className="text-sm sm:text-base">{option}</span>
-                      </label>
-                    )
-                  })}
-                </div>
+                                ? "bg-purple-50 border-purple-500"
+                                : "border-purple-100 hover:border-purple-300"
+                            }
+                        `}
+                        >
+                          <input
+                            type="radio"
+                            name={`${question.id}-${sq.id}`}
+                            value={option}
+                            checked={isSelected}
+                            onChange={() => handleInputChange(question.id, sq.id, option)}
+                            disabled={submitted && !practiceMode}
+                            className="mr-2 text-purple-600 focus:ring-purple-500"
+                          />
+                          <span className="text-sm sm:text-base">{option}</span>
+                        </label>
+                      )
+                    })}
+                  </div>
+                )}
               </motion.div>
             )
           })}
+
+        {/* Render essay type questions */}
+        {(question.type === "essay" || question.type === "writing" || question.type === "paragraph") && (
+          <div className="mb-4">
+            {question.options && (
+              <div className="mb-4">
+                <label className="block text-purple-700 font-medium mb-2">Select a topic:</label>
+                <select
+                  value={answers[question.id] || ""}
+                  onChange={(e) => handleInputChange(question.id, null, e.target.value)}
+                  disabled={submitted && !practiceMode}
+                  className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="">Select a topic</option>
+                  {question.options.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+            <div>
+              <label className="block text-purple-700 font-medium mb-2">
+                Your answer:{" "}
+                {question.minWords && question.maxWords && `(${question.minWords}-${question.maxWords} words)`}
+              </label>
+              <textarea
+                value={essayAnswers[question.id] || ""}
+                onChange={(e) => handleEssayChange(question.id, null, e.target.value)}
+                disabled={submitted && !practiceMode}
+                rows={8}
+                className="w-full p-3 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Write your answer here..."
+              ></textarea>
+              {question.minWords && question.maxWords && (
+                <div className="mt-2 text-sm">
+                  <span
+                    className={`font-medium ${countWords(essayAnswers[question.id] || "") < question.minWords
+                      ? "text-red-500"
+                      : countWords(essayAnswers[question.id] || "") > question.maxWords
+                        ? "text-red-500"
+                        : "text-green-500"
+                      }`}
+                  >
+                    Word count: {countWords(essayAnswers[question.id] || "")}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Render note-making questions */}
+        {question.type === "note-making" &&
+          question.subQuestions &&
+          question.subQuestions.map((sq, index) => (
+            <div key={index} className="mb-4">
+              <label className="block text-purple-700 font-medium mb-2">
+                {sq.text} {sq.marks && `[${sq.marks} marks]`}
+              </label>
+              <textarea
+                value={essayAnswers[`${question.id}-${sq.id}`] || ""}
+                onChange={(e) => handleEssayChange(question.id, sq.id, e.target.value)}
+                disabled={submitted && !practiceMode}
+                rows={6}
+                className="w-full p-3 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Write your answer here..."
+              ></textarea>
+            </div>
+          ))}
+
+        {/* Render short answer questions */}
+        {(question.type === "short-answer" || question.type === "long-answer") &&
+          question.subQuestions &&
+          question.subQuestions.map((sq, index) => (
+            <div key={index} className="mb-6">
+              <label className="block text-purple-700 font-medium mb-2">
+                {index + 1}. {sq.text}
+              </label>
+              <textarea
+                value={essayAnswers[`${question.id}-${sq.id}`] || ""}
+                onChange={(e) => handleEssayChange(question.id, sq.id, e.target.value)}
+                disabled={submitted && !practiceMode}
+                rows={question.type === "short-answer" ? 3 : 5}
+                className="w-full p-3 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Write your answer here..."
+              ></textarea>
+              {sq.minWords && sq.maxWords && (
+                <div className="mt-1 text-sm">
+                  <span
+                    className={`font-medium ${countWords(essayAnswers[`${question.id}-${sq.id}`] || "") < (sq.minWords || question.minWords)
+                      ? "text-red-500"
+                      : countWords(essayAnswers[`${question.id}-${sq.id}`] || "") > (sq.maxWords || question.maxWords)
+                        ? "text-red-500"
+                        : "text-green-500"
+                      }`}
+                  >
+                    Word count: {countWords(essayAnswers[`${question.id}-${sq.id}`] || "")}
+                  </span>
+                </div>
+              )}
+            </div>
+          ))}
+
         <div className="flex justify-between items-center mt-2">
           <div className="text-sm text-purple-600">{question.category}</div>
           <div className="text-sm text-purple-600">[{question.marks} marks]</div>
@@ -1028,6 +938,7 @@ export default function MathExam() {
 
   const startExam = () => {
     setExamStarted(true)
+    setShowSettings(false)
     setTimeRemaining(examDuration * 60)
 
     timerRef.current = setInterval(() => {
@@ -1040,120 +951,6 @@ export default function MathExam() {
         return prev - 1
       })
     }, 1000)
-  }
-
-  const LanguageSwitch = () => {
-    return (
-      <motion.div
-        className="mb-4 bg-white p-3 rounded-lg shadow-lg flex items-center justify-between"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      >
-        <span className="text-purple-800 font-medium">Question Language:</span>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setQuestionLanguage("english")}
-            className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
-              ${questionLanguage === "english"
-                ? "bg-purple-600 text-white"
-                : "bg-purple-100 text-purple-800 hover:bg-purple-200"
-              }`}
-          >
-            English
-          </button>
-          <button
-            onClick={() => setQuestionLanguage("hindi")}
-            className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
-              ${questionLanguage === "hindi"
-                ? "bg-purple-600 text-white"
-                : "bg-purple-100 text-purple-800 hover:bg-purple-200"
-              }`}
-          >
-            हिंदी
-          </button>
-        </div>
-      </motion.div>
-    )
-  }
-
-  const ExamSettings = () => {
-    return (
-      <div
-        className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg"
-
-      >
-        <h2 className="text-2xl font-bold text-purple-800 mb-6 text-center">Exam Settings</h2>
-
-        <div className="mb-6">
-          <label className="block text-purple-700 font-medium mb-2">Exam Duration (minutes):</label>
-          <input
-            type="number"
-            min="1"
-            max="180"
-            value={examDuration}
-            onChange={(e) => setExamDuration(Math.max(1, Number.parseInt(e.target.value) || 30))}
-            className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-        </div>
-
-        <div className="mb-6">
-          <label className="block text-purple-700 font-medium mb-2">Language:</label>
-          <div className="flex gap-2">
-            <button
-              onClick={() => setQuestionLanguage("english")}
-              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-          ${questionLanguage === "english"
-                  ? "bg-purple-600 text-white"
-                  : "bg-purple-100 text-purple-800 hover:bg-purple-200"
-                }`}
-            >
-              English
-            </button>
-            <button
-              onClick={() => setQuestionLanguage("hindi")}
-              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-          ${questionLanguage === "hindi"
-                  ? "bg-purple-600 text-white"
-                  : "bg-purple-100 text-purple-800 hover:bg-purple-200"
-                }`}
-            >
-              हिंदी
-            </button>
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <label className="block text-purple-700 font-medium mb-2">Mode:</label>
-          <div className="flex gap-2">
-            <button
-              onClick={() => setPracticeMode(false)}
-              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-          ${!practiceMode ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-800 hover:bg-purple-200"}`}
-            >
-              Exam Mode
-            </button>
-            <button
-              onClick={() => setPracticeMode(true)}
-              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
-          ${practiceMode ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-800 hover:bg-purple-200"}`}
-            >
-              Practice Mode
-            </button>
-          </div>
-        </div>
-
-        <motion.button
-          onClick={startExam}
-          className="w-full py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Start Exam
-        </motion.button>
-      </div>
-
-    )
   }
 
   const PracticeSettings = () => {
@@ -1216,10 +1013,6 @@ export default function MathExam() {
   }
 
   useEffect(() => {
-    setCurrentQuestion((prev) => prev)
-  }, [questionLanguage])
-
-  useEffect(() => {
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current)
@@ -1227,7 +1020,7 @@ export default function MathExam() {
     }
   }, [])
 
-  if (!examStarted) {
+  if (showSettings) {
     return (
       <div className="min-h-screen bg-purple-50 flex flex-col justify-center p-4">
         <motion.header
@@ -1236,11 +1029,54 @@ export default function MathExam() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl font-bold mb-2 text-purple-800">Class 10th Mathematics Board Examination 2025</h1>
+          <h1 className="text-3xl font-bold mb-2 text-purple-800">High School English Examination 2025</h1>
           <p className="text-purple-600">Configure your exam settings below</p>
         </motion.header>
 
-        <ExamSettings />
+        <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold text-purple-800 mb-6 text-center">Exam Settings</h2>
+
+          <div className="mb-6">
+            <label className="block text-purple-700 font-medium mb-2">Exam Duration (minutes):</label>
+            <input
+              type="number"
+              min="1"
+              max="180"
+              value={examDuration}
+              onChange={(e) => setExamDuration(Math.max(1, Number.parseInt(e.target.value) || 180))}
+              className="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-purple-700 font-medium mb-2">Mode:</label>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setPracticeMode(false)}
+                className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
+            ${!practiceMode ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-800 hover:bg-purple-200"}`}
+              >
+                Exam Mode
+              </button>
+              <button
+                onClick={() => setPracticeMode(true)}
+                className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors
+            ${practiceMode ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-800 hover:bg-purple-200"}`}
+              >
+                Practice Mode
+              </button>
+            </div>
+          </div>
+
+          <motion.button
+            onClick={startExam}
+            className="w-full py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Start Exam
+          </motion.button>
+        </div>
       </div>
     )
   }
@@ -1254,9 +1090,7 @@ export default function MathExam() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-xl sm:text-2xl font-bold mb-2 text-purple-800 ">
-            Class 10th Mathematics Board Examination 2025
-          </h1>
+          <h1 className="text-xl sm:text-2xl font-bold mb-2 text-purple-800 ">High School English Examination 2025</h1>
           <div className="text-sm sm:text-base text-purple-800">
             Total Questions: {questions.length} | Maximum Marks: {totalMarks}
           </div>
@@ -1265,8 +1099,6 @@ export default function MathExam() {
             Time Remaining: {formatTimeRemaining(timeRemaining)}
           </div>
         </motion.header>
-
-        <LanguageSwitch />
 
         {practiceMode && <PracticeSettings />}
 
@@ -1285,7 +1117,7 @@ export default function MathExam() {
 
             <AnimatePresence mode="wait">
               <motion.div
-                key={`${currentQuestion}-${questionLanguage}`}
+                key={currentQuestion}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
@@ -1357,10 +1189,20 @@ export default function MathExam() {
                   </h3>
                   <div className="flex flex-wrap gap-1 sm:gap-2 justify-center">
                     {questions.map((_, index) => {
-                      const hasAnswered = Object.keys(answers).some((key) => key.startsWith(`${index + 1}-`))
+                      const hasAnswered =
+                        Object.keys(answers).some((key) => key.startsWith(`${index + 1}-`)) ||
+                        Object.keys(essayAnswers).some((key) => key.startsWith(`${index + 1}`))
+
                       const isCorrect =
                         hasAnswered &&
                         submitted &&
+                        questions[index].type !== "essay" &&
+                        questions[index].type !== "writing" &&
+                        questions[index].type !== "paragraph" &&
+                        questions[index].type !== "short-answer" &&
+                        questions[index].type !== "long-answer" &&
+                        questions[index].type !== "note-making" &&
+                        questions[index].subQuestions &&
                         questions[index].subQuestions.every((sq) => {
                           const userAnswer = answers[`${index + 1}-${sq.id}`]
                           return isAnswerCorrect(index + 1, sq.id, userAnswer)
@@ -1377,7 +1219,7 @@ export default function MathExam() {
                                 ? isCorrect
                                   ? "bg-green-100 text-green-800 border border-green-500"
                                   : hasAnswered
-                                    ? "bg-red-100 text-red-800 border border-red-500"
+                                    ? "bg-blue-100 text-blue-800 border border-blue-500"
                                     : "bg-gray-100 text-gray-800 border border-gray-300"
                                 : hasAnswered
                                   ? "bg-purple-100 text-purple-800 border border-purple-500"
@@ -1518,10 +1360,19 @@ export default function MathExam() {
                       <div className="font-medium text-red-600">{incorrectAnswers}</div>
                     </div>
                     <div className="flex justify-between">
-                      <div>Not Attempted:</div>
-                      <div className="font-medium">
-                        {questions.reduce((total, q) => total + q.subQuestions.length, 0) -
-                          (correctAnswers + incorrectAnswers)}
+                      <div>Subjective Questions:</div>
+                      <div className="font-medium text-blue-600">
+                        {
+                          questions.filter(
+                            (q) =>
+                              q.type === "essay" ||
+                              q.type === "writing" ||
+                              q.type === "paragraph" ||
+                              q.type === "short-answer" ||
+                              q.type === "long-answer" ||
+                              q.type === "note-making",
+                          ).length
+                        }
                       </div>
                     </div>
                   </div>
@@ -1585,28 +1436,28 @@ export default function MathExam() {
                     onClick={() => {
                       // Create the download function
                       const downloadPDF = () => {
-                        const pdfPath = '/papers/10/2025_mathematics.pdf';
+                        const pdfPath = "/papers/english/2025_english.pdf"
 
                         // Create an anchor element
-                        const link = document.createElement('a');
-                        link.href = pdfPath;
-                        link.setAttribute('download', 'original-paper.pdf');
-                        link.setAttribute('target', '_blank');
+                        const link = document.createElement("a")
+                        link.href = pdfPath
+                        link.setAttribute("download", "original-paper.pdf")
+                        link.setAttribute("target", "_blank")
 
                         // Append to the document body
-                        document.body.appendChild(link);
+                        document.body.appendChild(link)
 
                         // Trigger the download
-                        link.click();
+                        link.click()
 
                         // Clean up by removing the link
                         setTimeout(() => {
-                          document.body.removeChild(link);
-                        }, 100);
-                      };
+                          document.body.removeChild(link)
+                        }, 100)
+                      }
 
                       // Call the download function
-                      downloadPDF();
+                      downloadPDF()
                     }}
                     className="px-6 py-2 bg-purple-100 text-purple-800 rounded-lg hover:bg-purple-200 transition-colors"
                     whileHover={{ scale: 1.05 }}
