@@ -1030,7 +1030,7 @@ export default function MathExam() {
     setExamStarted(true)
     setTimeRemaining(examDuration * 60)
 
-    timerRef.current= setInterval(() => {
+    timerRef.current = setInterval(() => {
       setTimeRemaining((prev) => {
         if (prev <= 1) {
           clearInterval(timerRef.current)
@@ -1081,7 +1081,7 @@ export default function MathExam() {
     return (
       <div
         className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg"
-        
+
       >
         <h2 className="text-2xl font-bold text-purple-800 mb-6 text-center">Exam Settings</h2>
 
@@ -1544,6 +1544,7 @@ export default function MathExam() {
                   >
                     Review Questions
                   </motion.button>
+
                   <motion.button
                     onClick={() => {
                       setPracticeMode(true)
@@ -1556,6 +1557,7 @@ export default function MathExam() {
                   >
                     Practice Mode
                   </motion.button>
+
                   <motion.button
                     onClick={() => {
                       setPracticeMode(true)
@@ -1569,6 +1571,7 @@ export default function MathExam() {
                   >
                     Review Mistakes
                   </motion.button>
+
                   <motion.button
                     onClick={() => window.print()}
                     className="px-6 py-2 bg-purple-100 text-purple-800 rounded-lg hover:bg-purple-200 transition-colors"
@@ -1576,6 +1579,40 @@ export default function MathExam() {
                     whileTap={{ scale: 0.95 }}
                   >
                     Print Results
+                  </motion.button>
+
+                  <motion.button
+                    onClick={() => {
+                      // Create the download function
+                      const downloadPDF = () => {
+                        const pdfPath = '/papers/10/2025_mathematics.pdf';
+
+                        // Create an anchor element
+                        const link = document.createElement('a');
+                        link.href = pdfPath;
+                        link.setAttribute('download', 'original-paper.pdf');
+                        link.setAttribute('target', '_blank');
+
+                        // Append to the document body
+                        document.body.appendChild(link);
+
+                        // Trigger the download
+                        link.click();
+
+                        // Clean up by removing the link
+                        setTimeout(() => {
+                          document.body.removeChild(link);
+                        }, 100);
+                      };
+
+                      // Call the download function
+                      downloadPDF();
+                    }}
+                    className="px-6 py-2 bg-purple-100 text-purple-800 rounded-lg hover:bg-purple-200 transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Download Original Paper
                   </motion.button>
                 </div>
               </motion.div>
